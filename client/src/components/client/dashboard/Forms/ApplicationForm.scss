@@ -1,0 +1,72 @@
+.application-form{
+    position: relative;
+    .backdrop{
+        position: absolute;
+        right: 0px;
+        top: 0;
+        bottom: 0;
+        left: 0px;
+        // background-color: rgba(92, 92, 92, 0.781);
+    }
+    .field-wrapper{
+        margin-top: 10px;
+        label{
+            display:block;
+            color: rgb(139, 139, 139);
+        }
+        textArea{
+            padding: .5rem 1rem;
+            border-radius: 5px;
+            border: 1px solid rgb(194, 194, 194);
+            outline: none;
+            min-width: 20rem;
+            width: 100%;
+        }
+        input[type='text']{
+            padding: .6rem 1rem;
+            border-radius: 5px;
+            border: 1px solid rgb(194, 194, 194);
+            outline: none;
+            min-width: 20rem;
+            width: 100%;
+        }
+    }
+    .doc-type-wrapper{
+        display: flex;
+        margin-bottom: 5px;
+        .doc-type{
+            width: 50%;
+            input{
+                margin-right: 5px;
+            }
+        }
+    }
+    .btn-div{
+        margin-top: 15px;
+        display: flex;
+        justify-content: flex-end;
+    }
+    .form-download{
+        margin-left:5px
+    }
+    .btn{
+        
+        
+    }
+    
+}
+.application-footer{
+    button{
+        // padding: .8rem 0rem !important;
+        min-width: 90px;
+        color: #fff !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 40px;
+        .spinner-border{
+            width: 20px;
+            height: 20px;
+        }
+    }
+}

@@ -1,0 +1,35 @@
+.client-dashboard{
+    padding:5px
+}
+.cat-cards{
+    display: flex;
+    justify-content:space-around;
+    padding: 10px;
+}
+.apply-card{
+    width:15%;
+    border:1px;
+    border-radius: 5px;
+    background-color: aliceblue;
+    box-shadow: 1px 1px 1px rgb(202, 201, 201);
+    display: flex;
+    cursor:pointer;
+    justify-content: center;
+    align-items: center;
+}
+.apply-card:hover{
+    background-color: rgb(206, 232, 255);
+}
+.form-body{
+    .ipr-type{
+    display: flex;
+    justify-content:space-between;
+    .checkbox-wrapper{
+        display: flex;
+        align-items: center;
+        input{
+            margin-right:5px;
+        }
+    }
+}
+}

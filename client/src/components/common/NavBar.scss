@@ -1,0 +1,19 @@
+.header{
+    display: flex ;
+    justify-content: space-between ;
+    background-color: aliceblue;
+    align-items: center;
+    .profile{
+        display: flex;
+    }
+    .right-header{
+        display:flex;
+        .notif-icon{
+            margin-right: 10px;
+        }
+        .username{
+            margin-right:8px
+        }
+    }
+    
+}

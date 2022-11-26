@@ -1,0 +1,17 @@
+.not_found_page{
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    align-items: center;
+    place-items: center;
+    font-family: poppins;
+    div{
+        text-align: center;
+        h1{
+            font-size: 10rem;
+        }
+        h4{
+            font-size: 2rem;
+        }
+    }
+}

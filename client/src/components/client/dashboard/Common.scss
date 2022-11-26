@@ -1,0 +1,43 @@
+.pending,.approved,.rejected{
+    padding: 2rem;
+    .titile{
+        border-bottom: 1px solid rgb(201, 201, 201);
+        padding-bottom: 5px;
+        margin-bottom: 0px;
+        font-weight: 700;
+        color: rgb(0, 72, 82);
+    }
+    table{
+        width: 100%;
+    }
+    .pending-table,.approved-table, .rejected-table{
+        th{
+            background: rgba(245, 245, 245, 0.521);
+        }
+        td,th{
+            padding: 1rem 0rem;
+            padding-left: .5rem;
+        }
+        tr{
+            border: 1px solid rgb(224, 224, 224);
+            padding: 1rem;
+        }
+        tr:hover{
+
+            border: 1px solid rgb(224, 224, 224);
+            background: rgb(243, 243, 243);
+        }
+        .description{
+            max-width: 18rem;
+        }
+        .status{
+            span{
+                color: rgb(202, 172, 0);
+                background-color: rgb(255, 247, 173);
+                border-radius: 5px;
+                padding: 1px 2px;
+            }
+            
+        }
+    }
+}

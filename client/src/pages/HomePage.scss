@@ -1,0 +1,89 @@
+.header{
+    display: flex;
+    justify-content:space-between;
+    padding:10px;
+    .logo{
+        display: flex;
+        justify-content: center
+    }
+    .right-div{
+        display: flex;
+    }
+    .dropdown-menu{ 
+        width:100px;
+        background-color: white;
+        box-shadow: 1px 1px 1px rgb(228, 228, 228);
+        padding: 0px;
+        .dropdown-item{
+            padding: .7rem 1rem;
+        }
+    }
+}
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap');
+
+/* Homepage */
+.landing-div{
+    width: 90%;
+    margin: auto;
+    font-weight: 700;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    height: 100vh;
+}
+.landing-div .div-1{
+    max-width: 600px;
+    text-align: justify;
+
+}
+.landing-div button {
+    padding: 10px 30px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+.landing-div img{
+    height: 70vh;
+    flex: 1;
+    margin-top: 70px;
+}
+.main-text{
+    font-size: 60px;
+    /* margin-top: 50px; */
+    -webkit-text-fill-color: transparent;
+    background-repeat: repeat;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-repeat: repeat;
+    background-image: url('https://www.clementoni.com/media/prod/dk/39521/gradient-1000-pcs-high-quality-collection_uEw0tL3.jpg');
+    background-size: cover;
+    /* margin: 0px; */
+    animation: movebackground 20s infinite;
+}
+.main-text-helper{
+    font-weight: normal;
+    letter-spacing: 1px;
+    font-size: 16px;
+}
+@keyframes movebackground{
+    0%{
+        background-position: 0px;
+    }
+    25%{
+        background-position: 350px;
+    }
+    50% {
+        background-position: 700px;
+    }
+    75%{
+        background-position: 0px;
+    }
+    100%{
+        background-position: 700px;
+    }
+}
