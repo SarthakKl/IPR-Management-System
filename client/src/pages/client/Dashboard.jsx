@@ -6,15 +6,15 @@ import plus from '../../assets/plus-icon.png'
 import { useEffect } from 'react'
 import { getApplicationDetails } from '../../utils/api/clientApi'
 import { useDispatch, useSelector } from 'react-redux'
-import {actions} from '../../redux/applicationSlice'
+import {actions} from '../../redux/clientSlice'
 import ApplyModal from '../../components/client/dashboard/Forms/ApplyModal'
 
 function Dashboard() {
   const cardTitle = ['Approved', 'Pending', 'Rejected']
   const categoryCount = useSelector((state) => [
-    state.applicationReducer.approved.length,  
-    state.applicationReducer.pending.length, 
-    state.applicationReducer.rejected.length
+    state.clientReducer.approved.length,  
+    state.clientReducer.pending.length, 
+    state.clientReducer.rejected.length
   ])
   const catRoutes = ['approved', 'pending', 'rejected']
   const [iprType, setIprType ] = useState('patent')

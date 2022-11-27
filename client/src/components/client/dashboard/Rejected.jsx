@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import './Common.scss'
 
 function Rejected() {
-  const rejectedApplications = useSelector((state) => state.applicationReducer.rejected)
+  const rejectedApplications = useSelector((state) => state.clientReducer.rejected)
   return (
     <div className='rejected'>
         <h3 className="titile">Rejected</h3>

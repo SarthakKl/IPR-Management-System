@@ -3,7 +3,7 @@ import './Common.scss'
 import { useSelector } from 'react-redux'
 
 function Approved() {
-  const approvedApplications = useSelector((state) => state.applicationReducer.approved)
+  const approvedApplications = useSelector((state) => state.clientReducer.approved)
   return (
     <div className='approved'>
         <h3 className="titile">Approved</h3>

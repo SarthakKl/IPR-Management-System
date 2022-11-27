@@ -2,12 +2,12 @@ import React from 'react'
 import bell from '../../assets/bell.png'
 import './NavBar.scss'
 import profile from '../../assets/profile_placeholder.png'
-
+import logo from '../../assets/logo.png'
 function NavBar() {
   return (
     <div className='header'>
         <div>
-            <h2>IPRMS</h2>
+          <img src = {logo} width = '80' height='50'/>
         </div>
         <div className = 'right-header'>
             <img className = 'notif-icon' src={bell} height='20' width='20'/>

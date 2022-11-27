@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit'
 
 const appSlice = createSlice({
-    name:'applicationSlice',
+    name:'clientSlice',
     initialState:{
         pending:[],
         approved:[],

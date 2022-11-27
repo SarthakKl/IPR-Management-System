@@ -5,6 +5,7 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 const authRouter = require('./src/routes/authRoutes')
 const clientRouter = require('./src/routes/clientRoutes')
+const reviewerRouter = require('./src/routes/reviewerRoutes')
 // const { urlencoded } = require('express')
 // const bodyParser = require('body-parser')
 //We can change the header of the preflight request in the cors
@@ -27,6 +28,7 @@ const port = process.env.SERVER_PORT || 3003
 
 app.use('/', authRouter)
 app.use('/client',clientRouter)
+app.use('/reviewer', reviewerRouter)
 app.get('/', (req, res) => {
     res.send("Welcome to IPR Management System")
 })

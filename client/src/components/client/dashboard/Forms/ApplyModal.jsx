@@ -1,15 +1,11 @@
 import React, { useState } from 'react'
-import { Outlet, useNavigate } from 'react-router-dom'
 import Modal from 'react-bootstrap/Modal'
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { actions } from '../../../../redux/applicationSlice'
-
 import Button from '../../../ui/button/Button'
 import './ApplicationForm.scss'
 import { toast } from 'react-toastify'
 import { submitApplication } from '../../../../utils/api/clientApi';
 import Spinner from 'react-bootstrap/Spinner';
+
 function ApplyModal({ applyModal, showApplyModal,fetchApplications }) {
     const [desc, setDesc] = useState('-')
     const [title, setTitle] = useState('Title')

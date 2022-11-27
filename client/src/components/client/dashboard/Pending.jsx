@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import './Common.scss'
 
 function Pending() {
-  const  pendingApplications = useSelector((state) => state.applicationReducer.pending)
+  const  pendingApplications = useSelector((state) => state.clientReducer.pending)
 
   return (
     <div className='pending'>

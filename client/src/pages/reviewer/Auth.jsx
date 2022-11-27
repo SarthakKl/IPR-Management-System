@@ -32,8 +32,8 @@ function Auth() {
     e.preventDefault()
     const fullname = e.target[0].value
     const email = e.target[1].value
-    const mobile = e.target[1].value
-    const address = e.target[1].value
+    const mobile = e.target[2].value
+    const address = e.target[3].value
     const pass = e.target[4].value
     const confirmPass = e.target[5].value
 
