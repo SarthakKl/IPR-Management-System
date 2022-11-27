@@ -12,8 +12,8 @@ router.use(bodyParser.json())
 router.use(bodyParser.urlencoded({extended:true}))
 // router.use(upload2.array())
 
-const accessKey = process.env.AWS_ACCESS_KEY
-const secretKey = process.env.AWS_SECRET_ACCESS_KEY
+const accessKey = process.env.AWS_ACCESS_KEY_VALUE
+const secretKey = process.env.AWS_SECRET_ACCESS_KEY_VALUE
 
 const s3 = new S3Client({
     credentials:{

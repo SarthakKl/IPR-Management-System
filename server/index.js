@@ -24,7 +24,7 @@ const connect = async () => {
     }
 }
 connect()
-const port = process.env.SERVER_PORT || 3003
+const port = process.env.PORT || 3003
 
 app.use('/', authRouter)
 app.use('/client',clientRouter)
