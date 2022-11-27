@@ -36,4 +36,5 @@ app.listen(port, () => {
     // console.log(process.env.AWS_ACCESS_KEY)
     console.log(`Listening to port ${port}`)
 })
-module.exports= app
+
+module.exports = app;
