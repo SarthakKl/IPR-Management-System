@@ -7,6 +7,7 @@ import ApplicationModal from './ApplicationModal'
 function Reviewing() {
   const reviewing = useSelector((state) => state.reviewerReducer.reviewing)
   const [applicationId, setApplicationId] = useState('')
+
   return (
     <div className='pending'>
         <h3 className="titile">Reviewing</h3>
@@ -43,6 +44,7 @@ function Reviewing() {
         <ApplicationModal 
           setApplicationId = {setApplicationId}
           applicationId = {applicationId}
+          parentComponent = 'reviewing'
         />
         {
           reviewing?.length===0 &&

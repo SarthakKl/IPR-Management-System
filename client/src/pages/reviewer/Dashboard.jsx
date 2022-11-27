@@ -7,8 +7,6 @@ import Card from '../../components/ui/Cards/Card'
 import {actions} from '../../redux/reviewerSlice'
 import { fetchApplications } from '../../utils/api/reviewerApi'
 
-
-
 function Dashboard() {
   const cardTitle = ['Applications', 'Reviewing', 'Reviewed']
   const catRoutes = ['applications', 'reviewing', 'reviewed']
@@ -23,6 +21,7 @@ function Dashboard() {
       const response = await fetchApplications()
       if(response.error)
         return console.log(response.error)
+      console.log(response)
       dispatch(actions.setAllApplication(response.applications))
     } catch (error) {
       console.log(error)

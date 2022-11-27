@@ -7,9 +7,9 @@ import { fetchApplications } from '../../../utils/api/reviewerApi'
 import ApplicationModal from './ApplicationModal'
 
 function Applications() {
-  const dispatch = useDispatch()
+
   const applications = useSelector((state) => state.reviewerReducer.applications)
-  const [applicationId, setApplicationId] = useState('638121af840081d625f0dbb7')
+  const [applicationId, setApplicationId] = useState('')
 
 
   return (
@@ -53,6 +53,7 @@ function Applications() {
         <ApplicationModal 
           setApplicationId = {setApplicationId}
           applicationId = {applicationId}
+          parentComponent = 'applications'
         />
 
         {

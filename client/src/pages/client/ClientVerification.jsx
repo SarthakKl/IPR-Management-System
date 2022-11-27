@@ -16,6 +16,7 @@ function ClientVerification() {
         if(response.error){
             return setMessage(response.error)
         }
+        console.log(response)
         dispatch(actions.setClientToken(response.token))
         setMessage('Email verified successfully. Redirecting...')
         localStorage.setItem(process.env.REACT_APP_CLIENT_TOKEN_KEY, response.token)

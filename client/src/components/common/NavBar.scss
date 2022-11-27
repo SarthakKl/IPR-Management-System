@@ -5,6 +5,14 @@
     align-items: center;
     .profile{
         display: flex;
+        align-items: center;
+        button{
+
+            background: transparent !important;
+            outline: none !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
     }
     .right-header{
         display:flex;

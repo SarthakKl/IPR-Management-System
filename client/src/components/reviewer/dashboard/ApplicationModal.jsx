@@ -3,24 +3,29 @@ import Modal from 'react-bootstrap/Modal'
 import Button from '../../ui/button/Button'
 import Spinner from 'react-bootstrap/Spinner';
 import { useEffect } from 'react';
-import { reviewApplication } from '../../../utils/api/reviewerApi'
+import { completeReview, reviewApplication } from '../../../utils/api/reviewerApi'
 import ApplicationDetails from './ApplicationDetails';
+import { useDispatch } from 'react-redux';
+import {actions} from '../../../redux/reviewerSlice'
 
-function ApplicationModal({ setApplicationId, applicationId }) {
-    const [btnLoading, setBtnLoading] = useState(false)
+function ApplicationModal({ setApplicationId, applicationId, parentComponent}) {
     const [isLoading, setIsLoading] = useState(false)
     const [errorEncountered, setError] = useState('')
     const [application, setApplication] = useState({})
     const [buttonStatus,setButtonStatus] = useState(false)
+    const dispatch = useDispatch()
     const fetchApplication = async () => {
         try {
             setIsLoading(true)
             const response = await reviewApplication(applicationId)
+            console.log(response)
             setIsLoading(false)
             if (response.error) {
                 return setError(response.error)
             }
             setApplication(response.application)
+            if(parentComponent == 'applications')
+                dispatch(actions.reviewApplication(applicationId))
         } catch (error) {
             console.log(error)
             return setError(error.message)
@@ -28,28 +33,35 @@ function ApplicationModal({ setApplicationId, applicationId }) {
     }
     const updateHandler = async(status)=>{
         try {
-            if(status==='approved')setButtonStatus('approvedLoading')
-            if(status==='rejected')setButtonStatus('rejectedLoading')
-            // const response = await updateApplicationStatus(applicationId,status)
-            // setButtonStatus(false)
-            // if (response.error) {
-            //     return setError(response.error)
-            // }
+            if(status==='APPROVED')setButtonStatus('approvedLoading')
+            if(status==='REJECTED')setButtonStatus('rejectedLoading')
+            const response = await completeReview(applicationId,status)
+            setButtonStatus('')
+            if (response.error) {
+                return setError(response.error)
+            }
             
+            dispatch(actions.completeReview({_id:applicationId, status}))
+            setApplicationId('')
         } catch (error) {
             console.log(error)
             setButtonStatus(false)
             return setError(error.message)
         }
     }
+    const onClose = () => {
+        setApplicationId('')
+        setError('')
+    }
     useEffect(() => {
-        if (applicationId)fetchApplication()
+        if(applicationId)
+            fetchApplication()
     }, [applicationId])
     return (
         <div>
             <Modal
                 size="lg"
-                show={applicationId }
+                show={applicationId}
                 onHide={() => setApplicationId('')}
                 aria-labelledby="example-modal-sizes-title-lg"
                 backdrop='static'
@@ -57,7 +69,7 @@ function ApplicationModal({ setApplicationId, applicationId }) {
             >
                 <Modal.Header closeButton>
                     <Modal.Title id="example-modal-sizes-title-lg">
-                        Apply
+                        Review
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body disabled>
@@ -74,26 +86,37 @@ function ApplicationModal({ setApplicationId, applicationId }) {
                     {
                         errorEncountered &&
                         <div>
-                            errorEncountered
+                            {errorEncountered}
                         </div>
                     }
                 </Modal.Body>
                 <Modal.Footer className='application-footer'>
-                    <Button disabled={isLoading || btnLoading || errorEncountered}>
+                    <Button 
+                        disabled={buttonStatus || errorEncountered} 
+                        onClick = {() => updateHandler('APPROVED')}
+                    >
                         {
-                            isLoading ?
+                            buttonStatus == 'approvedLoading' ?
                             <Spinner /> :
                             'Approved'
                         }
                     </Button>
-                    <Button disabled={isLoading || btnLoading || errorEncountered}>
+                    <Button 
+                        disabled={buttonStatus || errorEncountered} 
+                        onClick = {() => updateHandler('REJECTED')}
+                    >
                         {
-                            isLoading ?
+                            buttonStatus == 'rejectedLoading' ?
                             <Spinner /> :
                             'Rejected'
                         }
                     </Button>
-                    <Button onClick={() => setApplicationId('')}>Cancel </Button>
+                    <Button 
+                        onClick={() => onClose()} 
+                        disabled={buttonStatus}
+                    >
+                        Cancel
+                    </Button>
                 </Modal.Footer>
             </Modal>
         </div>

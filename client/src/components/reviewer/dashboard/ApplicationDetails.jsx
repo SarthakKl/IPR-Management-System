@@ -29,7 +29,7 @@ function ApplicationDetails({application}) {
             />
             <ViewButton
                 url={application?.content?.length > 0 ? application?.content[0] : ''}
-                title = 'Drawing of Works'
+                title = 'Drawing of Work'
             />
             {
                 application?.ipr_type =='trademark' &&

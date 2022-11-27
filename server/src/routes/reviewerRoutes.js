@@ -1,7 +1,6 @@
 const router = require('express').Router()
 const Application = require('../models/Application')
 const jwt = require('jsonwebtoken')
-const { RoutingRuleFilterSensitiveLog } = require('@aws-sdk/client-s3')
 
 router.use((req, res, next) => {
     try {
@@ -30,8 +29,8 @@ router.get('/fetch-applications', async (req, res)=>{
     try {
         const pendingApplications = await Application.find({status:'PENDING'})
         const reviewingApplications = await Application.find({reviewer_id:req.reviewerId, status:'REVIEWING'})
-        const reviewedApplications = await Application.find({reviewer_id:req.reviewerId, status:['APPROVED', 'PENDING']})
-
+        const reviewedApplications = await Application.find({reviewer_id:req.reviewerId, status:['APPROVED', 'REJECTED']})
+        console.log(req.reviewerId, reviewedApplications)
         return res.status(200).json({
             applications:{
                 pendingApplications, 
@@ -58,7 +57,7 @@ router.patch('/review-application', async (req, res) => {
         application.reviewer_id = req.reviewerId
         application.status = 'REVIEWING'
         await application.save()
-
+        console.log(application)
         return res.status(200).json({
             application,
             message:"Application status updated successfully",

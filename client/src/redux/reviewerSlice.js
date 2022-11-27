@@ -19,12 +19,12 @@ const reviewerSlice = createSlice({
             //need reviewer id and application id in payload
             let i = 0
             for(i = 0; i < state.applications.length; i++){
-                if(state.applications[i]._id == actions.payload._id)
+                if(state.applications[i]._id == actions.payload)
                     break;
             }
             const application = state.applications[i]
+            
             application.status = 'REVIEWING'
-            application.reviewer_id = actions.payload.reviewerId
             state.applications.splice(i, 1)
             state.reviewing.push(application)
         },
