@@ -7,23 +7,11 @@ import { fetchApplications } from '../../../utils/api/reviewerApi'
 import ApplicationModal from './ApplicationModal'
 
 function Applications() {
-  const applications = useSelector((state) => state.reviewerReducer.applications)
   const dispatch = useDispatch()
-  const [applicationId, setApplicationId] = useState('')
+  const applications = useSelector((state) => state.reviewerReducer.applications)
+  const [applicationId, setApplicationId] = useState('638121af840081d625f0dbb7')
 
-  const fetchApplication = async () => {
-    try {
-      const response = await fetchApplications()
-      if(response.error)
-        return console.log(response.error)
-      dispatch(actions.setAllApplication(response.applications))
-    } catch (error) {
-      console.log(error)
-    }
-  }
-  useEffect(() => {
-    fetchApplication()
-  }, [])
+
   return (
     <div className='pending'>
         <h3 className="titile">Applications</h3>
@@ -36,6 +24,7 @@ function Applications() {
               <th>Status</th>
               <th>Description</th>
               <th>Applied At</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -49,7 +38,12 @@ function Applications() {
                     <td className='status'><span>{application.status}</span></td>
                     <td className='description'>{application.description}</td>
                     <td>{ new Date(application.createdAt)?.toString()}</td>
-                    <td><Button onClick = {() => setApplicationId(application._id)}>Open</Button></td>
+                    <td>
+                      <Button 
+                        onClick = {() => setApplicationId(application._id)}
+                      >
+                        Open
+                      </Button></td>
                   </tr>
                 )
               })
@@ -60,6 +54,7 @@ function Applications() {
           setApplicationId = {setApplicationId}
           applicationId = {applicationId}
         />
+
         {
           applications?.length===0 &&
           <div className='no-data'>

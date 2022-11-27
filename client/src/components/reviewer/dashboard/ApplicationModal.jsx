@@ -4,13 +4,14 @@ import Button from '../../ui/button/Button'
 import Spinner from 'react-bootstrap/Spinner';
 import { useEffect } from 'react';
 import { reviewApplication } from '../../../utils/api/reviewerApi'
+import ApplicationDetails from './ApplicationDetails';
 
 function ApplicationModal({ setApplicationId, applicationId }) {
     const [btnLoading, setBtnLoading] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
     const [errorEncountered, setError] = useState('')
     const [application, setApplication] = useState({})
-
+    const [buttonStatus,setButtonStatus] = useState(false)
     const fetchApplication = async () => {
         try {
             setIsLoading(true)
@@ -25,15 +26,30 @@ function ApplicationModal({ setApplicationId, applicationId }) {
             return setError(error.message)
         }
     }
+    const updateHandler = async(status)=>{
+        try {
+            if(status==='approved')setButtonStatus('approvedLoading')
+            if(status==='rejected')setButtonStatus('rejectedLoading')
+            // const response = await updateApplicationStatus(applicationId,status)
+            // setButtonStatus(false)
+            // if (response.error) {
+            //     return setError(response.error)
+            // }
+            
+        } catch (error) {
+            console.log(error)
+            setButtonStatus(false)
+            return setError(error.message)
+        }
+    }
     useEffect(() => {
-        if (applicationId != '')
-            fetchApplication()
+        if (applicationId)fetchApplication()
     }, [applicationId])
     return (
         <div>
             <Modal
                 size="lg"
-                show={applicationId}
+                show={applicationId }
                 onHide={() => setApplicationId('')}
                 aria-labelledby="example-modal-sizes-title-lg"
                 backdrop='static'
@@ -47,9 +63,7 @@ function ApplicationModal({ setApplicationId, applicationId }) {
                 <Modal.Body disabled>
                     {
                         !isLoading && !errorEncountered &&
-                        <div>
-
-                        </div>
+                        <ApplicationDetails application={application} />
                     }
                     {
                         isLoading &&
@@ -68,15 +82,15 @@ function ApplicationModal({ setApplicationId, applicationId }) {
                     <Button disabled={isLoading || btnLoading || errorEncountered}>
                         {
                             isLoading ?
-                                <Spinner /> :
-                                'Approved'
+                            <Spinner /> :
+                            'Approved'
                         }
                     </Button>
                     <Button disabled={isLoading || btnLoading || errorEncountered}>
                         {
                             isLoading ?
-                                <Spinner /> :
-                                'Rejected'
+                            <Spinner /> :
+                            'Rejected'
                         }
                     </Button>
                     <Button onClick={() => setApplicationId('')}>Cancel </Button>

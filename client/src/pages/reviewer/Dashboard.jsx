@@ -1,8 +1,12 @@
-import React, { useState } from 'react'
-import Card from '../../components/ui/Cards/Card'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Outlet, useNavigate } from 'react-router-dom'
+
 import '../client/Dashboard.scss'
-import { useSelector } from 'react-redux'
+import Card from '../../components/ui/Cards/Card'
+import {actions} from '../../redux/reviewerSlice'
+import { fetchApplications } from '../../utils/api/reviewerApi'
+
 
 
 function Dashboard() {
@@ -13,6 +17,20 @@ function Dashboard() {
     state.reviewerReducer.reviewing.length,
     state.reviewerReducer.reviewed.length])
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const fetchApplication = async () => {
+    try {
+      const response = await fetchApplications()
+      if(response.error)
+        return console.log(response.error)
+      dispatch(actions.setAllApplication(response.applications))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  useEffect(() => {
+    fetchApplication()
+  }, [])
 
   return (
     <div className='client-dashboard'>
