@@ -30,9 +30,10 @@ app.use('/', authRouter)
 app.use('/client',clientRouter)
 app.use('/reviewer', reviewerRouter)
 app.get('/', (req, res) => {
-    res.send("Welcome to IPR Management System")
+    res.send("Welcome to IPR Management System API")
 })
 app.listen(port, () => {
     // console.log(process.env.AWS_ACCESS_KEY)
     console.log(`Listening to port ${port}`)
 })
+module.exports= app
