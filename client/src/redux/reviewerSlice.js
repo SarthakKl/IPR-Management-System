@@ -9,10 +9,11 @@ const reviewerSlice = createSlice({
         reviewed:[]
     },
     reducers:{
-        setAllApplication(state, actions){
-            state.applications = actions.payload.pendingApplications
-            state.reviewing = actions.payload.reviewedApplications
-            state.reviewed = actions.payload.reviewingApplications
+        setAllApplication(state, {payload}){
+            console.log(payload)
+            state.reviewed = payload.reviewedApplications
+            state.reviewing = payload.reviewingApplications
+            state.applications = payload.pendingApplications
         },
         reviewApplication(state, actions){
             //need reviewer id and application id in payload
