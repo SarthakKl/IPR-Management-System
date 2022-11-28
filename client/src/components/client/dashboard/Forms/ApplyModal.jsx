@@ -7,17 +7,17 @@ import { submitApplication } from '../../../../utils/api/clientApi';
 import Spinner from 'react-bootstrap/Spinner';
 
 function ApplyModal({ applyModal, showApplyModal,fetchApplications }) {
-    const [desc, setDesc] = useState('-')
-    const [title, setTitle] = useState('Title')
-    const [docUrl, setDocUrl] = useState('https://en.wikipedia.org/wiki/Patent')
+    const [desc, setDesc] = useState('')
+    const [title, setTitle] = useState('')
+    const [docUrl, setDocUrl] = useState()
     const [form1, setForm1] = useState(null)
     const [form3, setForm3] = useState(null)
     const [form5, setForm5] = useState(null)
     const [form48, setForm48] = useState(null)
     const [idProof, setIdProof] = useState(null)
     const [docFile, setDocFile] = useState(null)
-    const [docType, setDocType] = useState('url')
-    const [iprType, setIprType] = useState('copyright')
+    const [docType, setDocType] = useState()
+    const [iprType, setIprType] = useState('')
     const [isLoading,setIsLoading] = useState(false)
     const notify = (msg) => toast.error(msg, {
         position: "top-right",
