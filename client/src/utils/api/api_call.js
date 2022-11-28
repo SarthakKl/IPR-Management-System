@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-axios.defaults.baseURL = 'http://stage1env-env.eba-8rpns27j.us-east-1.elasticbeanstalk.com/'
+// axios.defaults.baseURL = 'http://stage1env-env.eba-8rpns27j.us-east-1.elasticbeanstalk.com/'
+axios.defaults.baseURL = "https://7310-116-193-143-52.ngrok.io/"
 
 export const postApi = async({url,data,params,headers})=>{
   console.log("Api Called")
