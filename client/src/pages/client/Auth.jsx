@@ -26,7 +26,7 @@ function Auth() {
     }
     // console.log(response.client, response.token)
     dispatch(actions.setClientToken(response.token))
-    localStorage.setItem(process.env.REACT_APP_CLIENT_TOKEN_KEY, response.token)
+    localStorage.setItem('CLIENT_TOKEN', response.token)
   }
   async function handleSignup(e){
     e.preventDefault()

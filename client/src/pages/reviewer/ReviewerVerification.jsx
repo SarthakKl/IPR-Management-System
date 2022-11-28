@@ -17,7 +17,7 @@ function ReviewerVerification() {
         }
         dispatch(actions.setReviewerToken(response.token))
         setMessage('Email verified successfully. Redirecting...')
-        localStorage.setItem(process.env.REACT_APP_REVIEWER_TOKEN_KEY, response.token)
+        localStorage.setItem('REVIEWER_TOKEN', response.token)
         navigate('/reviewer/dashboard', {replace:true})
     }
     useEffect(() => {

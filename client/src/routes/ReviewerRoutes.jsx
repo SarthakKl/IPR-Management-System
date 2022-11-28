@@ -16,7 +16,7 @@ function ReviewerRoutes() {
   const dispatch = useDispatch()
   const reviewerToken = useSelector((state) => state.authReducer.reviewerToken)
   if(!reviewerToken){
-    const token = localStorage.getItem(process.env.REACT_APP_REVIEWER_TOKEN_KEY)
+    const token = localStorage.getItem('REVIEWER_TOKEN')
     const user = localStorage.getItem('user')
     if(token){
       console.log(token)

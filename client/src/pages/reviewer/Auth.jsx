@@ -27,7 +27,7 @@ function Auth() {
     // console.log(response.client, response.token)
     console.log(response)
     dispatch(actions.setReviewerToken(response.token))
-    localStorage.setItem(process.env.REACT_APP_REVIEWER_TOKEN_KEY, response.token)
+    localStorage.setItem('REVIEWER_TOKEN', response.token)
     localStorage.setItem('user',JSON.stringify(response.reviewer))
   }
   async function handleSignup(e){

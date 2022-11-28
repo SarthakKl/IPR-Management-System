@@ -17,7 +17,7 @@ function ClientRoutes() {
   const dispatch = useDispatch()
   const clientToken = useSelector((state) => state.authReducer.clientToken)
   if(!clientToken){
-    const token = localStorage.getItem(process.env.REACT_APP_CLIENT_TOKEN_KEY)
+    const token = localStorage.getItem('CLIENT_TOKEN')
     if(token){
       console.log(token)
       dispatch(actions.setClientToken(token))
