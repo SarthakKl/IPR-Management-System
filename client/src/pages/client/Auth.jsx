@@ -45,7 +45,7 @@ function Auth() {
       console.log(response.error)
       return setError(response.error)
     }
-    if(response.message = 'Email sent successfully')
+    if(response.message = 'successful')
       return setVerificationState(false)
   }
   return (

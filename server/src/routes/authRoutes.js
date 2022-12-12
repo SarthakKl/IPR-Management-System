@@ -15,7 +15,7 @@ router.post('/client-login', async (req, res) => {
         // console.log(client)
         if(!client.verified){
             console.log(client)
-            const mailer = helper(client._id, req.body.email, 'user')
+            const mailer = helper(client._id, req.body.email, 'client')
             if(mailer.error){
                 return res.status(500).json(mailer)
             }
@@ -47,7 +47,7 @@ router.post('/client-signup', async(req, res) => {
         })
         await client.save()
 
-        const mailer = helper(client._id, req.body.email, 'user')
+        const mailer = await helper(client._id, req.body.email, 'client')
         console.log(mailer)
 
         if(mailer.error)

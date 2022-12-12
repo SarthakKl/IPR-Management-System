@@ -12,8 +12,6 @@ const reviewerRouter = require('./src/routes/reviewerRoutes')
 app.use(cors())
 env.config()
 app.use(express.json())
-// app.use(bodyParser.urlencoded())
-// app.use(bodyParser.urlencoded({extended:true}))
 
 const connect = async () => {
     try {

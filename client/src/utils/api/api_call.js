@@ -1,8 +1,8 @@
 import axios from 'axios'
 
 // axios.defaults.baseURL = 'http://stage1env-env.eba-8rpns27j.us-east-1.elasticbeanstalk.com/'
-axios.defaults.baseURL = "https://ipr-management-system-69.vercel.app/"
-// axios.defaults.baseURL = 'http://localhost:3002/'
+// axios.defaults.baseURL = "https://ipr-management-system-69.vercel.app/"
+axios.defaults.baseURL = 'http://localhost:3002/'
 
 export const postApi = async({url,data,params,headers})=>{
   console.log("Api Called")
