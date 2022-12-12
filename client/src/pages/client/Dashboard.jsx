@@ -34,9 +34,6 @@ function Dashboard() {
       return console.log(error)
     }
   }
-  const submitHandler = ()=>{
-
-  }
   useEffect(()=>{
     fetchApplications()
   }, [])

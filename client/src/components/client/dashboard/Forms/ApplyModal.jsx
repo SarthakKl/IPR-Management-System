@@ -136,7 +136,6 @@ function ApplyModal({ applyModal, showApplyModal,fetchApplications }) {
                                     placeholder='Title'
                                     value={title}
                                     onChange={(e) => setTitle(e.target.value)}
-                                    
                                 />
                             </div>
                             <div className='field-wrapper'>
@@ -158,8 +157,7 @@ function ApplyModal({ applyModal, showApplyModal,fetchApplications }) {
                                             id='url'
                                             name='doc-type'
                                             onChange={onDocChange}
-                                            checked={docType == 'url'}
-                                            
+                                            checked={docType == 'url'} 
                                         />
                                         <label htmlFor='url'>URL</label>
                                     </div>
