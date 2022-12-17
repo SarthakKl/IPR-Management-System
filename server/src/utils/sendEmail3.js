@@ -25,7 +25,8 @@ oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
 module.exports= sendEmail = async (receiverEmail,subject, link) => {
     try {
       // console.log("hehfhehfehfheh");
-      console.log(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI)
+    //   console.log(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI)
+      console.log(receiverEmail, subject, link)
       const accessToken = await oAuth2Client.getAccessToken();
       // console.log("link: "+msg);
       const transport = nodemailer.createTransport({
