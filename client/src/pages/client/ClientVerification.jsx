@@ -18,8 +18,10 @@ function ClientVerification() {
         }
         console.log(response)
         dispatch(actions.setClientToken(response.token))
+        dispatch(actions.setUserName(response.client.fullname))
         setMessage('Email verified successfully. Redirecting...')
         localStorage.setItem('CLIENT_TOKEN', response.token)
+        localStorage.setItem('CLIENT_NAME', response.client.fullname)
         navigate('/client/dashboard', {replace:true})
     }
     useEffect(() => {

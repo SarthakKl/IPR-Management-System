@@ -27,8 +27,9 @@ function Auth() {
     // console.log(response.client, response.token)
     console.log(response)
     dispatch(actions.setReviewerToken(response.token))
+    dispatch(actions.setUserName(response.reviewer.fullname))
     localStorage.setItem('REVIEWER_TOKEN', response.token)
-    localStorage.setItem('user',JSON.stringify(response.reviewer))
+    localStorage.setItem('REVIWER_NAME',JSON.stringify(response.reviewer))
   }
   async function handleSignup(e){
     e.preventDefault()

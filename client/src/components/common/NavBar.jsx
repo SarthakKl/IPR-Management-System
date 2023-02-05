@@ -9,9 +9,9 @@ import { useNavigate } from 'react-router-dom'
 function NavBar() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const auth = useSelector(state=>state.authReducer)
+  const userName = useSelector(state=>state.authReducer.userName)
   
-  console.log(auth)
+  console.log(userName)
   return (
     <div className='header'>
         <div>
@@ -19,7 +19,7 @@ function NavBar() {
         </div>
         <div className = 'right-header'>  
             <div className='profile'>
-                <span className='username'>USERNAME</span>
+                <span className='username'>{userName}</span>
                 <Dropdown>
                   <Dropdown.Toggle>
                     <img src = {profile} height = '40' width= '40'/>

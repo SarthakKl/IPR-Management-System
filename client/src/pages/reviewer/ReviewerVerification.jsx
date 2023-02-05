@@ -16,8 +16,10 @@ function ReviewerVerification() {
             return setMessage(response.error)
         }
         dispatch(actions.setReviewerToken(response.token))
+        dispatch(actions.setUserName(response.reviewer.fullname))
         setMessage('Email verified successfully. Redirecting...')
         localStorage.setItem('REVIEWER_TOKEN', response.token)
+        localStorage.setItem('REVIEWER_NAME', response.reviewer.fullname)
         navigate('/reviewer/dashboard', {replace:true})
     }
     useEffect(() => {

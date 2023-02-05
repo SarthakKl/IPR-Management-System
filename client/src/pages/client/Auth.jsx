@@ -16,7 +16,7 @@ function Auth() {
   
     // console.log(email, pass)
     const response = await clientLogin(email, pass)
-    // console.log(response)
+    console.log(response)
     if(response.error){
       console.log(response.error)
       return setError(response.error)
@@ -26,7 +26,9 @@ function Auth() {
     }
     // console.log(response.client, response.token)
     dispatch(actions.setClientToken(response.token))
+    dispatch(actions.setUserName(response.client.fullname)) 
     localStorage.setItem('CLIENT_TOKEN', response.token)
+    localStorage.setItem('CLIENT_NAME', response.client.fullname)
   }
   async function handleSignup(e){
     e.preventDefault()

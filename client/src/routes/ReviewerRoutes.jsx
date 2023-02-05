@@ -17,9 +17,10 @@ function ReviewerRoutes() {
   const reviewerToken = useSelector((state) => state.authReducer.reviewerToken)
   if(!reviewerToken){
     const token = localStorage.getItem('REVIEWER_TOKEN')
-    const user = localStorage.getItem('user')
     if(token){
       console.log(token)
+      const userName = localStorage.getItem('REVIEWER_NAME')
+      dispatch(actions.setUserName(userName))
       dispatch(actions.setReviewerToken(token))
       axios.defaults.headers.common['authorization'] = reviewerToken
     }

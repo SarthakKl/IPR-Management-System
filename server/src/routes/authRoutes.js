@@ -12,14 +12,18 @@ router.post('/client-login', async (req, res) => {
             return res.status(404).json(response.error)
         console.log(req.body.email)
         const client = response.client
-        // console.log(client)
+        console.log(client)
         if (!client.verified) {
-            console.log(client)
+            console.log('Email verification')
             const mailer = helper(client._id, req.body.email, 'client')
+            console.log('mailer', mailer)
             if (mailer.error) {
                 return res.status(500).json(mailer)
             }
-            return res.status(200).json(mailer)
+            mailer.message='Email sent successfully'
+            return res.status(200).json(
+                mailer
+            )
         }
         const token = client.getAuthToken()
         console.log(client)

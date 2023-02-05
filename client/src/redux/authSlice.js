@@ -1,5 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit'
 const initialState={
+    userName:'',
     clientToken:'',
     reviewerToken:'',
     adminToken:''
@@ -16,6 +17,10 @@ const authSlice = createSlice({
         },
         setReviewerToken(state, action){
             state.reviewerToken = action.payload
+        },
+        setUserName(state, {payload}){
+            // console.log(payload.userName)
+            state.userName = payload
         },
         deauthenticateUser(state,{payload}){
             console.log('deauthadf')

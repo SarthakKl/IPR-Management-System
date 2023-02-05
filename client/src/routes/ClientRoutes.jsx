@@ -20,6 +20,9 @@ function ClientRoutes() {
     const token = localStorage.getItem('CLIENT_TOKEN')
     if(token){
       console.log(token)
+      const userName = localStorage.getItem('CLIENT_NAME')
+      console.log(userName);
+      dispatch(actions.setUserName(userName))
       dispatch(actions.setClientToken(token))
       axios.defaults.headers.common['authorization'] = clientToken
     }
