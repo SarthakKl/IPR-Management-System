@@ -4,8 +4,8 @@ export const clientLogin = async (email, password) => {
       return await postApi({url:'client-login',data:{email: email,password: password}})
 }
 
-export const clientSignup = async (fullname, email, password) => {
-      return await postApi({url:'client-signup', data:{fullname:fullname, email:email, password:password}})
+export const clientSignup = async (userDetails) => {
+      return await postApi({url:'client-signup', data:userDetails})
 }
 
 export const checkVerificationToken = async (token) => {

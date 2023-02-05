@@ -23,6 +23,19 @@
         box-shadow: 6.91px 6.91px 15px #ebd8d8, -6.91px -6.91px 15px #ebd8d8;
         border: 1px solid #ffffff;
 
+        .user-categories{
+            display: flex;
+            justify-content:space-between;
+            width: 100%;
+            margin-top:10px;
+            div{
+                display: flex;
+            }
+            input{
+                margin-top: 0px;
+                margin-right:2px;
+            }
+        }
     // border-radius: 100%;
     }
     .auth-msg{
@@ -36,7 +49,7 @@
     flex-direction:column;
     border-radius: 5px;
     align-items: center;
-    input{
+    input,textarea{ 
         border:2px;
         border-color: rgb(177, 177, 177);
         border-radius:5px;

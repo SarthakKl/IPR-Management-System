@@ -32,6 +32,7 @@ function Auth() {
   }
   async function handleSignup(e){
     e.preventDefault()
+    console.log(e)
     const fullname = e.target[0].value
     const email = e.target[1].value
     const mobile = e.target[2].value

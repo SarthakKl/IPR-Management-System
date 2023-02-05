@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../common/AuthComponent.scss'
 function ClientSignup({handleSignup, errorEncountered, setPageState, setError}) {
+    const [userCategory, setUserCategory] = useState('Individual')
+
     const handleNav = () => {
         setError('')
         setPageState(true)
@@ -11,9 +13,48 @@ function ClientSignup({handleSignup, errorEncountered, setPageState, setError}) 
                     <div className='auth-title'>Sign Up</div>
                     <form
                         className='auth-form'
-                        onSubmit={handleSignup}>
+                        onSubmit={handleSignup}
+                    >
+                        <div className='user-categories'>
+                            <div className='individual-category'>
+                                <input  
+                                    type='radio'
+                                    name='user-category'
+                                    id='individual-cat'
+                                    onChange={(e) => {
+                                        if(e.target.checked)
+                                            setUserCategory('Individual')
+                                    }}
+                                    value={userCategory}
+                                    checked = {userCategory == 'Individual'}
+                                />
+                                <label
+                                    htmlFor='individual-cat'
+                                >
+                                    Individual
+                                </label>
+                            </div>
+                            <div>
+                                <input
+                                    type='radio'
+                                    name='user-category'
+                                    id = 'organisation-cat'
+                                    value={userCategory}
+                                    onChange={(e) => {
+                                        if(e.target.checked)
+                                            setUserCategory('Organisation')
+                                    }}
+                                    checked = {userCategory == 'Organisation'}
+                                />
+                                <label
+                                    htmlFor='organisation-cat'
+                                >
+                                    Organisation
+                                </label>
+                            </div>
+                        </div>
                         <input
-                            placeholder='Full Name'
+                            placeholder={userCategory == 'Individual'? 'Full Name':'Name'}
                             required
                             type='text'
                         />
@@ -22,6 +63,14 @@ function ClientSignup({handleSignup, errorEncountered, setPageState, setError}) 
                             required
                             type='email'
                         />
+                        {
+                            userCategory == 'Organisation' &&
+                            <textarea
+                             placeholder='Please share a brief description of your organisation'
+                             required
+                            />
+                        }
+                        
                         <input
                             placeholder='Password'
                             required

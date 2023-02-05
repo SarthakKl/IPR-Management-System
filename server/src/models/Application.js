@@ -13,6 +13,10 @@ const applicationSchema = new mongoose.Schema({
         type:String,
         default:""
     },
+    clientName:{
+        type:String,
+        required:true
+    },
     forms:{
         type:[String],
         default:[]

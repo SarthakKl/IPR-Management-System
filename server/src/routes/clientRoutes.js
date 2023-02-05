@@ -58,81 +58,41 @@ router.post('/apply', upload.fields(uploadFields), async (req, res) => {
     try {
         console.log(req.body)  
         const clientId = req.clientId
+        const clientName = await Client.findOne({_id:clientId}).fullname
         const title = req.body.title
         const idProof = req.files.idProof[0].location
         const content = req.body.docType == 'url'?req.body.content:req.files.content[0].location
         const description = req.body.desc
         const iprType = req.body.iprType
         // const contentType = req.body.contentType
-        
+        let forms = []
         if(iprType == 'patent'){
             const form1 = req.files.form1[0].location
             const form3 = req.files.form3[0].location
             const form5 = req.files.form5[0].location
-            
-            const forms = Array.of(form1, form3, form5)
-            const applicationData = {
-                client_id:clientId, 
-                title: title, 
-                id_proof: idProof, 
-                content: content, 
-                description: description,
-                ipr_type: iprType,
-                forms: forms
-            }
-            const application = new Application(applicationData)
-
-            await application.save()
-
-            return res.status(200).json({
-                application,
-                error:null,
-                message:'Application saved successfully'
-            })
+            forms = [form1, form3, form5];
         }
         if(iprType == 'trademark'){
             const form48 = req.files.form48[0].location
-            const forms = Array.of(form48)
-            const applicationData = {
-                client_id:clientId, 
-                title: title, 
-                id_proof: idProof, 
-                content: content, 
-                description: description,
-                ipr_type: iprType, 
-                // content_type: contentType,
-                forms: forms
-            }
-            const application = new Application(applicationData)
-            await application.save()
+            forms = [form48]
+        }
+        const applicationData = {
+            client_id:clientId, 
+            clientName:clientName,
+            title: title, 
+            id_proof: idProof, 
+            content: content, 
+            description: description,
+            ipr_type: iprType, 
+            forms: forms
+        }
+        const application = new Application(applicationData)
+        await application.save()
 
-            return res.status(200).json({
-                application,
-                error:null,
-                message:'Application saved successfully'
-            })
-        }
-        if(iprType == 'copyright'){
-            const applicationData = {
-                client_id:clientId, 
-                title: title, 
-                id_proof: idProof, 
-                content: content, 
-                description: description,
-                ipr_type: iprType, 
-                // content_type: contentType,
-            }
-            const application = new Application(applicationData)
-            await application.save()
-            
-            return res.status(200).json({
-                application,
-                error:null,
-                message:'Application saved successfully'
-            })
-        }
-        return res.status(403).json({
-            message:'Something went wrong'
+        return res.status(200).json({
+            application,
+            error:null,
+            message:'Application saved successfully'
         })
     } catch (error) {
         console.log(error)

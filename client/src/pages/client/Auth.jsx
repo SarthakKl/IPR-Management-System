@@ -30,15 +30,22 @@ function Auth() {
   }
   async function handleSignup(e){
     e.preventDefault()
-    const fullname = e.target[0].value
-    const email = e.target[1].value
-    const pass = e.target[2].value
-    const confirmPass = e.target[3].value
+    console.log(e)
+    let userCategory
+    if(e.target[0].checked)
+      userCategory = 'Individual'
+    else
+      userCategory = 'Organisation'
+    const fullname = e.target[2].value
+    const email = e.target[3].value
+    const description = userCategory == 'Organisation'?e.target[4].value:'';
+    const pass = e.target[userCategory=='Individual'?4:5].value
+    const confirmPass = e.target[userCategory=='Individual'?5:6].value
 
     if(pass != confirmPass){
       return setError("Password doesn't match")
     }
-    const response = await clientSignup(fullname, email, pass)
+    const response = await clientSignup({userCategory, fullname, email, pass, description})
     console.log(response)
 
     if(response.error){
