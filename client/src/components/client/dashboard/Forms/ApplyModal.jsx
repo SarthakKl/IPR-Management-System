@@ -16,7 +16,7 @@ function ApplyModal({ applyModal, showApplyModal,fetchApplications }) {
     const [form48, setForm48] = useState(null)
     const [idProof, setIdProof] = useState(null)
     const [docFile, setDocFile] = useState(null)
-    const [docType, setDocType] = useState('')
+    const [docType, setDocType] = useState('url')
     const [iprType, setIprType] = useState('patent')
     const [isLoading,setIsLoading] = useState('')
     const notify = (msg) => toast.error(msg, {

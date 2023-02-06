@@ -8,7 +8,7 @@ import ApplicationDetails from './ApplicationDetails';
 import { useDispatch } from 'react-redux';
 import {actions} from '../../../redux/reviewerSlice'
 
-function ApplicationModal({ setApplicationId, applicationId, parentComponent}) {
+function ApplicationModal({ setApplicationId, applicationId, clientId, parentComponent}) {
     const [isLoading, setIsLoading] = useState(false)
     const [errorEncountered, setError] = useState('')
     const [application, setApplication] = useState({})
@@ -17,13 +17,13 @@ function ApplicationModal({ setApplicationId, applicationId, parentComponent}) {
     const fetchApplication = async () => {
         try {
             setIsLoading(true)
-            const response = await reviewApplication(applicationId)
+            const response = await reviewApplication({applicationId, clientId})
             console.log(response)
             setIsLoading(false)
             if (response.error) {
                 return setError(response.error)
             }
-            setApplication(response.application)
+            setApplication({application: response.application, clientDetails: response.client})
             if(parentComponent == 'applications')
                 dispatch(actions.reviewApplication(applicationId))
         } catch (error) {
@@ -75,7 +75,7 @@ function ApplicationModal({ setApplicationId, applicationId, parentComponent}) {
                 <Modal.Body disabled>
                     {
                         !isLoading && !errorEncountered &&
-                        <ApplicationDetails application={application} />
+                        <ApplicationDetails applicationInfo={application} />
                     }
                     {
                         isLoading &&

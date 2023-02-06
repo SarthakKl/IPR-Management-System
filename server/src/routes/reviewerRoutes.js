@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const Application = require('../models/Application')
+const Client = require('../models/Client')
 const jwt = require('jsonwebtoken')
 
 router.use((req, res, next) => {
@@ -57,9 +58,11 @@ router.patch('/review-application', async (req, res) => {
         application.reviewer_id = req.reviewerId
         application.status = 'REVIEWING'
         await application.save()
+        const client = await Client.findOne({_id:req.body.clientId})
         console.log(application)
         return res.status(200).json({
             application,
+            client,
             message:"Application status updated successfully",
             error:null
         })

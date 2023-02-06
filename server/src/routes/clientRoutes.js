@@ -5,12 +5,8 @@ const {S3Client, Type} = require('@aws-sdk/client-s3')
 const multer = require('multer')
 const multerS3 = require('multer-s3')
 require('dotenv').config()
-// const bodyParser = require('body-parser')
 const Application = require('../models/Application')
-// const formidable = require('express-formidable')
-// router.use(bodyParser.json())
-// router.use(bodyParser.urlencoded({extended:true}))
-// router.use(upload2.array())
+
 
 const accessKey = process.env.AWS_ACCESS_KEY_VALUE
 const secretKey = process.env.AWS_SECRET_ACCESS_KEY_VALUE
@@ -58,13 +54,14 @@ router.post('/apply', upload.fields(uploadFields), async (req, res) => {
     try {
         console.log(req.body)  
         const clientId = req.clientId
-        const clientName = await Client.findOne({_id:clientId}).fullname
+        const clientName = (await Client.findOne({_id:clientId})).fullname
         const title = req.body.title
         const idProof = req.files.idProof[0].location
         const content = req.body.docType == 'url'?req.body.content:req.files.content[0].location
         const description = req.body.desc
         const iprType = req.body.iprType
         // const contentType = req.body.contentType
+        console.log(clientName)
         let forms = []
         if(iprType == 'patent'){
             const form1 = req.files.form1[0].location

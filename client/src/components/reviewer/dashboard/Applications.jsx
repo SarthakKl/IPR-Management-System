@@ -11,7 +11,9 @@ function Applications() {
   const applications = useSelector((state) => state.reviewerReducer.applications)
   const [applicationId, setApplicationId] = useState('')
 
-
+  const editTime = (time) => {
+    return time.slice(0, time.indexOf('GMT') - 1);
+  }
   return (
     <div className='pending'>
         <h3 className="titile">Applications</h3>
@@ -24,6 +26,7 @@ function Applications() {
               <th>Status</th>
               <th>Description</th>
               <th>Applied At</th>
+              <th>Client</th>
               <th></th>
             </tr>
           </thead>
@@ -37,13 +40,18 @@ function Applications() {
                     <td>{application.ipr_type}</td>
                     <td className='status'><span>{application.status}</span></td>
                     <td className='description'>{application.description}</td>
-                    <td>{ new Date(application.createdAt)?.toString()}</td>
+                    <td>{ 
+                      editTime(new Date(application.createdAt)?.toString())
+                    }</td>
                     <td>
                       <Button 
                         onClick = {() => setApplicationId(application._id)}
                       >
                         Open
                       </Button></td>
+                    <td>
+                      {application.clientName}
+                    </td>
                   </tr>
                 )
               })

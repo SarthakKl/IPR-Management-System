@@ -7,7 +7,10 @@ import ApplicationModal from './ApplicationModal'
 function Reviewing() {
   const reviewing = useSelector((state) => state.reviewerReducer.reviewing)
   const [applicationId, setApplicationId] = useState('')
-
+  const [clientId, setClientId] = useState('')
+  const editTime = (time) => {
+    return time.slice(0, time.indexOf('GMT') - 1);
+  }
   return (
     <div className='pending'>
         <h3 className="titile">Reviewing</h3>
@@ -20,6 +23,7 @@ function Reviewing() {
               <th>Status</th>
               <th>Description</th>
               <th>Applied At</th>
+              <th>Client</th>
               <th></th>
             </tr>
           </thead>
@@ -33,8 +37,22 @@ function Reviewing() {
                     <td>{application.ipr_type}</td>
                     <td className='status'><span>{application.status}</span></td>
                     <td className='description'>{application.description}</td>
-                    <td>{ new Date(application.createdAt)?.toString()}</td>
-                    <td><Button onClick = {() => setApplicationId(application._id)}>Open</Button></td>
+                    <td>{ 
+                        editTime(new Date(application.createdAt)?.toString())
+                    }
+                    </td>
+                    <td>{application.clientName}</td>
+                    <td>
+                      <Button 
+                        onClick = {() => {
+                          setApplicationId(application._id)
+                          setClientId(application.client_id)
+                          console.log(clientId)
+                        }}
+                      >
+                        Open
+                      </Button>
+                    </td>
                   </tr>
                 )
               })
@@ -44,6 +62,7 @@ function Reviewing() {
         <ApplicationModal 
           setApplicationId = {setApplicationId}
           applicationId = {applicationId}
+          clientId = {clientId}
           parentComponent = 'reviewing'
         />
         {

@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import Button from '../../ui/button/Button'
-
 import './ApplicationDetails.scss'
-function ApplicationDetails({application}) {
+
+function ApplicationDetails({applicationInfo}) {
+    const application = applicationInfo.application
+    const clientDetails = applicationInfo.clientDetails
     console.log({application})
     return (
         <div className='application_details_wrapper'>
@@ -23,6 +25,22 @@ function ApplicationDetails({application}) {
                 label='Status'
                 value={application?.status}
             />
+            <Input
+                label='Client'
+                value={clientDetails?.fullname}
+            />
+            <Input
+                label='Email'
+                value={clientDetails?.email}
+            />
+            {
+                clientDetails?.clientDescription &&
+                <Input
+                    label='Client'
+                    value={clientDetails?.clientDescription}
+                />
+            }
+            
             <ViewButton
                 url={application?.id_proof}
                 title = 'Id Proof'

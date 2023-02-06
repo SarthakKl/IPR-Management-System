@@ -12,8 +12,8 @@ export const reviewerSignup = async (fullname, email, password, mobile, address)
 export const fetchApplications = async () => {
     return await getApi({url:'/reviewer/fetch-applications'})
 }
-export const reviewApplication = async (applicationId) => {
-    return await patchApi({url:'/reviewer/review-application', data:{applicationId}})
+export const reviewApplication = async (data) => {
+    return await patchApi({url:'/reviewer/review-application', data:data})
 }
 export const completeReview = async (applicationId, status) => {
     return await patchApi({url:'/reviewer/complete-review', data:{applicationId, status}})
