@@ -11,6 +11,7 @@ import Layout from '../components/layouts/Layout'
 import Applications from '../components/reviewer/dashboard/Applications'
 import Reviewing from '../components/reviewer/dashboard/Reviewing'
 import Reviewed from '../components/reviewer/dashboard/Reviewed'
+import SearchDatabase from '../components/reviewer/SearchDatabase'
 
 function ReviewerRoutes() {
   const dispatch = useDispatch()
@@ -20,6 +21,7 @@ function ReviewerRoutes() {
     if(token){
       console.log(token)
       const userName = localStorage.getItem('REVIEWER_NAME')
+      console.log(userName)
       dispatch(actions.setUserName(userName))
       dispatch(actions.setReviewerToken(token))
       axios.defaults.headers.common['authorization'] = reviewerToken
@@ -38,6 +40,7 @@ function ReviewerRoutes() {
           <Route path = 'reviewing' element = {<Reviewing/>}/>
           <Route path = 'reviewed' element = {<Reviewed/>}/>
         </Route>
+        <Route path = '/search-database' element = {<SearchDatabase/>}/>
         <Route path = '/profile' element = {<Profile/>}/>
         <Route path = '/*' element = {<NotFound/>}/>
       </Routes>

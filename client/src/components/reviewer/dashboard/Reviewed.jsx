@@ -20,20 +20,19 @@ function Reviewed() {
             </tr>
           </thead>
           <tbody>
-          
-            {
-              reviewed.map((application, index) => {
-                return (
-                  <tr key={index}>
-                    <td>{application.title}</td>
-                    <td>{application.ipr_type}</td>
-                    <td className='status'><span>{application.status}</span></td>
-                    <td className='description'>{application.description}</td>
-                    <td>{ new Date(application.createdAt)?.toString()}</td>
-                  </tr>
-                )
-              })
-            }
+          {
+            reviewed.map((application, index) => {
+              return (
+                <tr key={index}>
+                  <td>{application.title}</td>
+                  <td>{application.ipr_type}</td>
+                  <td className='status'><span>{application.status}</span></td>
+                  <td className='description'>{application.description}</td>
+                  <td>{ new Date(application.createdAt)?.toString()}</td>
+                </tr>
+              )
+            })
+          }
           </tbody>
         </table>
         {

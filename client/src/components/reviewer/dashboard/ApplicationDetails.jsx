@@ -6,7 +6,7 @@ import './ApplicationDetails.scss'
 function ApplicationDetails({applicationInfo}) {
     const application = applicationInfo.application
     const clientDetails = applicationInfo.clientDetails
-    console.log({application})
+    console.log({applicationInfo})
     return (
         <div className='application_details_wrapper'>
             <Input

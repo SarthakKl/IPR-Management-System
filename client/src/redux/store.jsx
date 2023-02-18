@@ -7,7 +7,7 @@ export const store = configureStore({
     reducer:{
         authReducer: authReducer,
         clientReducer:clientReducer,
-        reviewerReducer:reviewerReducer
+        reviewerReducer:reviewerReducer,
     }
 })
 

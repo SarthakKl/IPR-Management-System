@@ -28,35 +28,34 @@ function Reviewing() {
             </tr>
           </thead>
           <tbody>
-          
-            {
-              reviewing.map((application, index) => {
-                return (
-                  <tr key={index}>
-                    <td>{application.title}</td>
-                    <td>{application.ipr_type}</td>
-                    <td className='status'><span>{application.status}</span></td>
-                    <td className='description'>{application.description}</td>
-                    <td>{ 
-                        editTime(new Date(application.createdAt)?.toString())
-                    }
-                    </td>
-                    <td>{application.clientName}</td>
-                    <td>
-                      <Button 
-                        onClick = {() => {
-                          setApplicationId(application._id)
-                          setClientId(application.client_id)
-                          console.log(clientId)
-                        }}
-                      >
-                        Open
-                      </Button>
-                    </td>
-                  </tr>
-                )
-              })
-            }
+          {
+            reviewing.map((application, index) => {
+              return (
+                <tr key={index}>
+                  <td>{application.title}</td>
+                  <td>{application.ipr_type}</td>
+                  <td className='status'><span>{application.status}</span></td>
+                  <td className='description'>{application.description}</td>
+                  <td>{ 
+                      editTime(new Date(application.createdAt)?.toString())
+                  }
+                  </td>
+                  <td>{application.clientName}</td>
+                  <td>
+                    <Button 
+                      onClick = {() => {
+                        setApplicationId(application._id)
+                        setClientId(application.client_id)
+                        console.log(clientId)
+                      }}
+                    >
+                      Open
+                    </Button>
+                  </td>
+                </tr>
+              )
+            })
+          }
           </tbody>
         </table>
         <ApplicationModal 

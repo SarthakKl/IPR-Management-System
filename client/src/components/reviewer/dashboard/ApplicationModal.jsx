@@ -3,7 +3,7 @@ import Modal from 'react-bootstrap/Modal'
 import Button from '../../ui/button/Button'
 import Spinner from 'react-bootstrap/Spinner';
 import { useEffect } from 'react';
-import { completeReview, reviewApplication } from '../../../utils/api/reviewerApi'
+import { completeReview, getClientDetails, reviewApplication } from '../../../utils/api/reviewerApi'
 import ApplicationDetails from './ApplicationDetails';
 import { useDispatch } from 'react-redux';
 import {actions} from '../../../redux/reviewerSlice'
@@ -14,16 +14,18 @@ function ApplicationModal({ setApplicationId, applicationId, clientId, parentCom
     const [application, setApplication] = useState({})
     const [buttonStatus,setButtonStatus] = useState(false)
     const dispatch = useDispatch()
+    
     const fetchApplication = async () => {
         try {
             setIsLoading(true)
-            const response = await reviewApplication({applicationId, clientId})
+            const response = await reviewApplication({applicationId})
+            const clientDetails = await getClientDetails({clientId})
             console.log(response)
             setIsLoading(false)
             if (response.error) {
                 return setError(response.error)
             }
-            setApplication({application: response.application, clientDetails: response.client})
+            setApplication({application: response.application, clientDetails})
             if(parentComponent == 'applications')
                 dispatch(actions.reviewApplication(applicationId))
         } catch (error) {
@@ -92,23 +94,24 @@ function ApplicationModal({ setApplicationId, applicationId, clientId, parentCom
                 </Modal.Body>
                 <Modal.Footer className='application-footer'>
                     <Button 
-                        disabled={buttonStatus || errorEncountered} 
+                        disabled={buttonStatus || errorEncountered || isLoading} 
                         onClick = {() => updateHandler('APPROVED')}
+                        variant = 'success'
                     >
                         {
                             buttonStatus == 'approvedLoading' ?
                             <Spinner /> :
-                            'Approved'
+                            'Approve'
                         }
                     </Button>
                     <Button 
-                        disabled={buttonStatus || errorEncountered} 
+                        disabled={buttonStatus || errorEncountered || isLoading} 
                         onClick = {() => updateHandler('REJECTED')}
                     >
                         {
                             buttonStatus == 'rejectedLoading' ?
                             <Spinner /> :
-                            'Rejected'
+                            'Reject'
                         }
                     </Button>
                     <Button 

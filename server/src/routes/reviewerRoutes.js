@@ -48,6 +48,31 @@ router.get('/fetch-applications', async (req, res)=>{
         })
     }
 })
+router.get('/fetch-all-applications', async (req, res) => {
+    try {
+        const allApplications = await Application.find({status:['APPROVED', 'REJECTED']})
+        console.log(allApplications)
+        return res.status(200).json({
+            allApplications,
+            error:null
+        })
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({error})
+    }
+})
+router.get('/client-details', async (req, res) => {
+    try {
+        const client = await Client.findOne({_id: req.query.clientId})
+        return res.status(200).json({
+            client, 
+            error:null
+        })
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({error})
+    }
+})
 router.patch('/review-application', async (req, res) => {
     try {
         const application = await Application.findOne({_id:req.body.applicationId})
@@ -58,11 +83,11 @@ router.patch('/review-application', async (req, res) => {
         application.reviewer_id = req.reviewerId
         application.status = 'REVIEWING'
         await application.save()
-        const client = await Client.findOne({_id:req.body.clientId})
+        // const client = await Client.findOne({_id:req.body.clientId})
         console.log(application)
         return res.status(200).json({
             application,
-            client,
+            // client,
             message:"Application status updated successfully",
             error:null
         })

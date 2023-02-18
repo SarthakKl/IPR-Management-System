@@ -10,14 +10,14 @@ function Applications() {
 
   const applications = useSelector((state) => state.reviewerReducer.applications)
   const [applicationId, setApplicationId] = useState('')
-
+  const [clientId, setClientId] = useState('')
+  
   const editTime = (time) => {
     return time.slice(0, time.indexOf('GMT') - 1);
   }
   return (
     <div className='pending'>
-        <h3 className="titile">Applications</h3>
-        
+        <h3 className="title">Applications</h3>
         <table className='pending-table'>
           <thead>
             <tr>
@@ -31,7 +31,6 @@ function Applications() {
             </tr>
           </thead>
           <tbody>
-          
             {
               applications.map((application, index) => {
                 return (
@@ -44,14 +43,19 @@ function Applications() {
                       editTime(new Date(application.createdAt)?.toString())
                     }</td>
                     <td>
-                      <Button 
-                        onClick = {() => setApplicationId(application._id)}
-                      >
-                        Open
-                      </Button></td>
-                    <td>
                       {application.clientName}
                     </td>
+                    <td>
+                      <Button 
+                          onClick = {() => {
+                            setApplicationId(application._id)
+                            setClientId(application.client_id)
+                            console.log(clientId)
+                          }}
+                        >
+                          Open
+                        </Button>
+                      </td>
                   </tr>
                 )
               })
@@ -61,6 +65,7 @@ function Applications() {
         <ApplicationModal 
           setApplicationId = {setApplicationId}
           applicationId = {applicationId}
+          clientId = {clientId}
           parentComponent = 'applications'
         />
 

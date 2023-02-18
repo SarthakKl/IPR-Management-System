@@ -73,12 +73,19 @@ function ApplyModal({ applyModal, showApplyModal,fetchApplications }) {
         fetchApplications()
         showApplyModal(false)
     }
+    const onClose = () => {
+        setDesc('');setTitle('');setDocUrl('');setForm1(null);
+        setForm3(null);setForm5(null);setForm48(null);setIdProof(null);
+        setDocFile(null);setDocType('url');setIprType('patent')
+        setIsLoading(false)
+        showApplyModal(false)
+    }
     return (
         <div>
             <Modal
                 size="lg"
                 show={applyModal}
-                onHide={() => showApplyModal(false)}
+                onHide={onClose}
                 aria-labelledby="example-modal-sizes-title-lg"
                 backdrop='static'
         
@@ -291,7 +298,7 @@ function ApplyModal({ applyModal, showApplyModal,fetchApplications }) {
                     </div>
                 </Modal.Body>
                 <Modal.Footer className='application-footer'>
-                    <Button onClick={() => showApplyModal(false)}>Cancel </Button>
+                    <Button onClick={onClose}>Cancel </Button>
                     <Button onClick={submitHandler} disabled={isLoading}>
                         {
                             isLoading?
