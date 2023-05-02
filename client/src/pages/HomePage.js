@@ -31,6 +31,7 @@ function Homepage() {
                     <div className='div-1'>
                         <p className='main-text' >IPR Management <br /> System</p>
                         <p className='main-text-helper'>This is Intellectual Property Rights software that grants the Inventor or Creator legal rights to protect his invention or creation.</p>
+                        <Button>Read More</Button>
                     </div>
                     <div>
                         <img src="https://i.ibb.co/jJv1FC0/pngwing-com.png" alt="" />

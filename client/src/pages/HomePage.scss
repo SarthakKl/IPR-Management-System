@@ -38,7 +38,12 @@
 .landing-div .div-1{
     max-width: 600px;
     text-align: justify;
-
+    .btn{
+        height: 40px;
+        width: 100px;
+        padding:5px;
+        font-size: 15px;
+    }
 }
 .landing-div button {
     padding: 10px 30px;

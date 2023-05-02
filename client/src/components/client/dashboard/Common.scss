@@ -17,6 +17,11 @@
         td,th{
             padding: 1rem 0rem;
             padding-left: .5rem;
+        } 
+        td{
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
         }
         tr{
             border: 1px solid rgb(224, 224, 224);
@@ -37,7 +42,6 @@
                 border-radius: 5px;
                 padding: 1px 2px;
             }
-            
         }
     }
 }

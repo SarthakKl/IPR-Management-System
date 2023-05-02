@@ -1,6 +1,7 @@
 import React from 'react'
 import './Common.scss'
 import { useSelector } from 'react-redux'
+import { editTime } from '../../common/EditTime'
 
 function Approved() {
   const approvedApplications = useSelector((state) => state.clientReducer.approved)
@@ -29,7 +30,7 @@ function Approved() {
                     <td>{application.ipr_type}</td>
                     <td className='status'><span>{application.status}</span></td>
                     <td className='description'>{application.description}</td>
-                    <td>{ new Date(application.createdAt)?.toString()}</td>
+                    <td>{ editTime(new Date(application.createdAt)?.toString())}</td>
                   </tr>
                 )
               })

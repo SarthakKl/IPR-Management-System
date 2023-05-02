@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import Button from '../../ui/button/Button'
 import { fetchApplications } from '../../../utils/api/reviewerApi'
 import ApplicationModal from './ApplicationModal'
+import { editTime } from '../../common/EditTime'
 
 function Applications() {
 
@@ -12,9 +13,9 @@ function Applications() {
   const [applicationId, setApplicationId] = useState('')
   const [clientId, setClientId] = useState('')
   
-  const editTime = (time) => {
-    return time.slice(0, time.indexOf('GMT') - 1);
-  }
+  // const editTime = (time) => {
+    
+  // }
   return (
     <div className='pending'>
         <h3 className="title">Applications</h3>

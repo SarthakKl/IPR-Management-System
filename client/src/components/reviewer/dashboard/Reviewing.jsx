@@ -3,14 +3,13 @@ import '../../client/dashboard/Common.scss'
 import {useSelector} from 'react-redux'
 import Button from '../../ui/button/Button'
 import ApplicationModal from './ApplicationModal'
+import { editTime } from '../../common/EditTime'
 
 function Reviewing() {
   const reviewing = useSelector((state) => state.reviewerReducer.reviewing)
   const [applicationId, setApplicationId] = useState('')
   const [clientId, setClientId] = useState('')
-  const editTime = (time) => {
-    return time.slice(0, time.indexOf('GMT') - 1);
-  }
+
   return (
     <div className='pending'>
         <h3 className="titile">Reviewing</h3>

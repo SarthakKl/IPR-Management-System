@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import './Common.scss'
+import { editTime } from '../../common/EditTime'
 
 function Pending() {
   const  pendingApplications = useSelector((state) => state.clientReducer.pending)
@@ -30,7 +31,7 @@ function Pending() {
                     <td>{application.ipr_type}</td>
                     <td className='status'><span>{application.status}</span></td>
                     <td className='description'>{application.description}</td>
-                    <td>{ new Date(application.createdAt)?.toString()}</td>
+                    <td>{ editTime(new Date(application.createdAt)?.toString())}</td>
                   </tr>
                 )
               })
