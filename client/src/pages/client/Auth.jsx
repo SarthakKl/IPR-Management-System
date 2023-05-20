@@ -21,7 +21,7 @@ function Auth() {
       console.log(response.error)
       return setError(response.error)
     }
-    if(response.message == 'Email sent successfully'){
+    if(response.message === 'Email sent successfully'){
       return setVerificationState(false)
     }
     // console.log(response.client, response.token)
@@ -40,21 +40,22 @@ function Auth() {
       userCategory = 'Organisation'
     const fullname = e.target[2].value
     const email = e.target[3].value
-    const description = userCategory == 'Organisation'?e.target[4].value:'';
-    const pass = e.target[userCategory=='Individual'?4:5].value
-    const confirmPass = e.target[userCategory=='Individual'?5:6].value
+    const contact = e.target[4].value
+    const description = userCategory === 'Organisation'?e.target[5].value:'';
+    const pass = e.target[userCategory==='Individual'?5:6].value
+    const confirmPass = e.target[userCategory==='Individual'?6:7].value
 
-    if(pass != confirmPass){
+    if(pass !== confirmPass){
       return setError("Password doesn't match")
     }
-    const response = await clientSignup({userCategory, fullname, email, pass, description})
+    const response = await clientSignup({userCategory, fullname, email, contact, pass, description})
     console.log(response)
 
     if(response.error){
       console.log(response.error)
       return setError(response.error)
     }
-    if(response.message = 'successful')
+    if(response.message === 'successful')
       return setVerificationState(false)
   }
   return (

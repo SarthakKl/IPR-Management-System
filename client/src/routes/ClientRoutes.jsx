@@ -12,6 +12,7 @@ import Rejected from '../components/client/dashboard/Rejected'
 import { useDispatch, useSelector } from 'react-redux'
 import {actions} from '../redux/authSlice'
 import axios from 'axios'
+import Applied from '../components/client/dashboard/Applied'
 
 function ClientRoutes() {
   const dispatch = useDispatch()
@@ -36,7 +37,8 @@ function ClientRoutes() {
     <Layout>
       <Routes>
         <Route path = '/dashboard' element = {<Dashboard/>}>
-          <Route path = '' element = {<Approved/>}/>
+          <Route path = '' element = {<Applied/>}/>
+          <Route path = 'applied' element = {<Applied/>}/>
           <Route path = 'approved' element = {<Approved/>}/>
           <Route path = 'pending' element = {<Pending/>}/>
           <Route path = 'rejected' element = {<Rejected/>}/>

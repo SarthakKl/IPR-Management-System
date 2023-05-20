@@ -3,6 +3,7 @@ const Client = require('../models/Client')
 const { helper } = require('../utils/mailHelper')
 const jwt = require('jsonwebtoken')
 const Reviewer = require('../models/Reviewer')
+const Application = require('../models/Application')
 
 router.post('/client-login', async (req, res) => {
     try {
@@ -49,11 +50,13 @@ router.post('/client-signup', async (req, res) => {
             userCategory: req.body.userCategory,
             fullname: req.body.fullname,
             email: req.body.email,
+            contact:req.body.contact,
             password: req.body.pass,
             clientDescription: req.body.description
         })
+        console.log(client)
         await client.save()
-
+        
         const mailer = await helper(client._id, req.body.email, 'client')
         console.log(mailer)
 
@@ -184,5 +187,18 @@ router.post('/reviewer-login', async (req, res) => {
         })
     }
 })
-
+router.post('/payment-verification',async(req,res)=>{
+    console.log("Webhook call form Razoarpay", new Date().toLocaleTimeString())
+    console.log(req.body.payload.payment.entity)
+    const application_id = req.body.payload.payment.entity.notes[0]
+    const application = await Application.findById(application_id)
+    application.payment_status  = "PAID"
+    application.status  = "PENDING"
+    await application.save()
+    console.log(application)
+    res.status(200).json({
+        message:"Payment Successful",
+        status:"ok"
+    })
+})
 module.exports = router

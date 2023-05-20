@@ -19,6 +19,11 @@ const clientSchema = new mongoose.Schema({
         required:true,
         trim:true
     },
+    contact:{
+        type:String,
+        required:true,
+        default:'29323322323'
+    },
     clientDescription:String,
     verified:{
         type:Boolean,

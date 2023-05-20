@@ -22,9 +22,9 @@ const SearchDatabase = () => {
         setSearchResult(response.allApplications)
         // console.log(searchResult)x
     }
+    
     const highlightSearchTerm = (value, toSearch) => {
-        const words = value.split(" ")
-        // console.log(toSearch, words)
+        const words = value.split(new RegExp(`(${toSearch})`, 'gi'));
         return words.map((word) => {
             return word.toLowerCase() === toSearch ? (<span className='highlighted-word'>{word}</span>):word;
         })
@@ -32,21 +32,22 @@ const SearchDatabase = () => {
     }
     const handleSearch = (event) => {
         const toSearch = event.target.value.toLowerCase()
+        console.log(toSearch,applications)
+        const f = applications.filter((application_s)=>{
+            let application = [
+                application_s.title,application_s.status,application_s.ipr_type,application_s.createdAt, 
+                application_s.clientName,application_s.description
+            ]
+            let r = false
+            application.forEach((item)=>{
+                if(item?.toString()?.toLowerCase()?.includes(toSearch))r=true
+            })
+            return r
+        })
+        console.log(f)
+        setSearchResult(f)
         setSearchTerm(toSearch)
-        if(toSearch === '')
-            return setSearchResult(applications)
-        setSearchResult(applications.filter((value) => {
-            const iprType = value.ipr_type.toLowerCase().split(" ");
-            const title = value.title.toLowerCase().split(" ");
-            const desc = value.description.toLowerCase().split(" ");
-            const client = value.clientName.toLowerCase().split(" ");
-            const createdAt = new Date(value.createdAt)?.toString().toLowerCase().split(" ");
-            return (iprType.includes(toSearch) || 
-                   title.includes(toSearch) || 
-                   desc.includes(toSearch) || 
-                   client.includes(toSearch) || 
-                   createdAt.includes(toSearch))
-        }))
+        return
     }
     const filterByIprType = (e) => {
         // console.log(e.target[e.target.selectedIndex].value)
@@ -110,7 +111,7 @@ const SearchDatabase = () => {
                                 {   
                                     highlightSearchTerm(application.title, searchTerm).map((word, i) => 
                                     <React.Fragment key={i}>
-                                        {word}{' '}
+                                        {word}
                                     </React.Fragment>)
                                 }
                             </td>
@@ -118,7 +119,7 @@ const SearchDatabase = () => {
                                 {
                                     highlightSearchTerm(application.ipr_type, searchTerm).map((word, i) => 
                                     <React.Fragment key={i}>
-                                        {word}{' '}
+                                        {word}
                                     </React.Fragment>)
                                 }
                             </td>
@@ -127,7 +128,7 @@ const SearchDatabase = () => {
                                 {
                                     highlightSearchTerm(application.description, searchTerm).map((word, i) => 
                                     <React.Fragment key={i}>
-                                        {word}{' '}
+                                        {word}
                                     </React.Fragment>)
                                 }
                             </td>
@@ -136,7 +137,7 @@ const SearchDatabase = () => {
                                     highlightSearchTerm(editTime(new Date(application.createdAt)?.toString()), searchTerm)
                                     .map((word, i) => 
                                         <React.Fragment key={i}>
-                                            {word}{' '}
+                                            {word}
                                         </React.Fragment>)
                                 }
                             </td>
@@ -144,7 +145,7 @@ const SearchDatabase = () => {
                                 {
                                     highlightSearchTerm(application.clientName, searchTerm).map((word, i) => 
                                         <React.Fragment key={i}>
-                                            {word}{' '}
+                                            {word}
                                         </React.Fragment>)
                                 }
                             </td>

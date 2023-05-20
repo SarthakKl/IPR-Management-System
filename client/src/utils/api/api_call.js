@@ -18,7 +18,7 @@ export const postApi = async({url,data,params,headers})=>{
     return responseData.data
   } catch (err) {
     const error = err?.response?.data?.error || 
-    err?.response?.data?.message || err.message
+    err?.response?.data?.message || err.message || err.response?.data?.error?.message
     console.log(":::",err,error)
     return {
       data:null,
@@ -42,7 +42,7 @@ export const patchApi = async ({url, data, params, headers})=>{
     return response.data
   } catch (err) {
     console.log(err)
-    const error = err.response?.data?.error || err.response?.data?.message || err.message
+    const error = err.response?.data?.error || err.response?.data?.message || err.message || err.response?.data?.error?.message
     return {
       data:null, 
       error
@@ -61,7 +61,7 @@ export const getApi = async ({url, params, headers}) => {
     return response.data
   } catch (err) {
     console.log(err)
-    const error = err.response?.data?.error || err.response?.data?.message || err.message
+    const error = err.response?.data?.error || err.response?.data?.message || err.message || err.response?.data?.error?.message
     return {
       data:null, 
       error

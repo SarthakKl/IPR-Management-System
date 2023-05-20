@@ -21,7 +21,7 @@ function Auth() {
       console.log(response.error)
       return setError(response.error)
     }
-    if(response.message == 'Email sent successfully'){
+    if(response.message === 'Email sent successfully'){
       return setVerificationState(false)
     }
     // console.log(response.client, response.token)
@@ -41,7 +41,7 @@ function Auth() {
     const pass = e.target[4].value
     const confirmPass = e.target[5].value
 
-    if(pass != confirmPass){
+    if(pass !== confirmPass){
       return setError("Password doesn't match")
     }
     const response = await reviewerSignup(fullname, email, pass, mobile, address)
@@ -51,7 +51,7 @@ function Auth() {
       console.log(response.error)
       return setError(response.error)
     }
-    if(response.message = 'Email sent successfully')
+    if(response.message === 'Email sent successfully')
       return setVerificationState(false)
   }
   return (<AuthComponent

@@ -63,6 +63,11 @@ function ClientSignup({handleSignup, errorEncountered, setPageState, setError}) 
                             required
                             type='email'
                         />
+                        <input
+                            placeholder='Contact'
+                            required
+                            type='text'
+                        />
                         {
                             userCategory == 'Organisation' &&
                             <textarea

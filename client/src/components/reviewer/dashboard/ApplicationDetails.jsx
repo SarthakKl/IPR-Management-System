@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import Button from '../../ui/button/Button'
 import './ApplicationDetails.scss'
+import Input from '../../common/Input'
+import ViewButton from '../../common/ViewButton'
 
 function ApplicationDetails({applicationInfo}) {
     const application = applicationInfo.application
@@ -82,27 +84,4 @@ function ApplicationDetails({applicationInfo}) {
 export default ApplicationDetails
 
 
-const Input = ({value,label})=>{
-    return(
-        <div className='input_wrapper'>
-            <label>{label}</label>
-            <input type="text" value={value} disabled/>
-        </div>
-    )
-}
 
-const ViewButton = ({url,title})=>{
-    const [viewModal,setViewModal] = useState(false)
-
-
-    return(
-        <div className='doc_wrapper'>
-            <label htmlFor="">{title}</label>
-            <a href={url} target='_blank'>
-                <Button >View</Button>
-            </a>
-        </div>
-        
-    )
-
-}

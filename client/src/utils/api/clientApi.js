@@ -19,3 +19,9 @@ export const submitApplication = async (form) => {
 export const getApplicationDetails = async() => {
       return await(getApi({url:'/client/application-details'}))
 }
+export const createOrder = async ({applicationId}) => {
+      return await(postApi({url:'/client/create-order', data:{applicationId}}))
+}
+export const verifyPayment = async (data) =>{
+      return await(postApi({url:'/client/verify-payment', data:data}))
+}

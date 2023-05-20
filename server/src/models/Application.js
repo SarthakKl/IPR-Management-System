@@ -38,11 +38,22 @@ const applicationSchema = new mongoose.Schema({
         enum:['APPROVED', 'REJECTED', 'PENDING', 'REVIEWING'],
         default:'PENDING'
     },
+    payment_status:{
+        type:String,
+        enum:['PAID','UNPAID'],
+        default:'UNPAID'
+    },
     description:String,
     title:{
         type:String,
         required:true
+    },
+    order_id:String,
+    application_fee:{
+        type:Number, 
+        default:500
     }
+    
 },{timestamps:true})
 
 const model = mongoose.model('Application', applicationSchema)

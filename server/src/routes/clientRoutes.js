@@ -6,7 +6,7 @@ const multer = require('multer')
 const multerS3 = require('multer-s3')
 require('dotenv').config()
 const Application = require('../models/Application')
-
+const paymentController = require('../controllers/paymentController')
 
 const accessKey = process.env.AWS_ACCESS_KEY_VALUE
 const secretKey = process.env.AWS_SECRET_ACCESS_KEY_VALUE
@@ -33,15 +33,24 @@ const upload = multer({
         limits:{fileSize:2000000 } // In bytes: 2000000 bytes = 2 MB
     })
 })
-router.use((req, res, next) => {
-    const token = req.headers.authorization || req.headers.Authorization
-    jwt.verify(token, process.env.CLIENT_JWT_SECRET, (error, payload) => {
-        if(error){
-            return res.status(403).json(error)
-        }
-        req.clientId = payload._id
+router.use( async (req, res, next) => {
+    try {
+        const token = req.headers.authorization || req.headers.Authorization
+        const payload = await jwt.verify(token, process.env.CLIENT_JWT_SECRET)
+        const client = await Client.findById(payload._id)
+        if(!client)
+            return res.json({
+                message:'Client not found',
+                error:null
+            })
+        req.clientId = client._id;
+        req.client = client
         next()
-    })
+    } catch (error) {
+        return res.json({
+            error:error
+        })
+    }
 })
 const uploadFields = [{name:'idProof', maxCount:1}, 
                       {name:'content', maxCount:1}, 
@@ -83,6 +92,7 @@ router.post('/apply', upload.fields(uploadFields), async (req, res) => {
             ipr_type: iprType, 
             forms: forms
         }
+        
         const application = new Application(applicationData)
         await application.save()
 
@@ -100,15 +110,24 @@ router.post('/apply', upload.fields(uploadFields), async (req, res) => {
 })
 router.get('/application-details', async (req, res) => {
     try {
-        const selectedAttr = '_id title status description ipr_type createdAt'
-        const pending = await Application.find({client_id:req.clientId,status:'PENDING'}).select(selectedAttr)
-        const approved = await Application.find({client_id:req.clientId,status:'APPROVED'}).select(selectedAttr)
-        const rejected = await Application.find({client_id:req.clientId,status:'REJECTED'}).select(selectedAttr)
+        const selectedAttr = '_id title status description ipr_type createdAt payment_status'
+        const allApplications = await Application.find({client_id:req.clientId})
+                                                 .select(selectedAttr)
+                                                 .sort({createdAt:-1})
+        // allApplications.sort((a, b) => a.timestamp - b.timestamp)
+        // const pending = await Application.find({client_id:req.clientId,status:'PENDING'}).select(selectedAttr)
+        // const approved = await Application.find({client_id:req.clientId,status:'APPROVED'}).select(selectedAttr)
+        // const rejected = await Application.find({client_id:req.clientId,status:'REJECTED'}).select(selectedAttr)
+        const pending = allApplications.filter((application) => application.status == 'PENDING')
+        const approved = allApplications.filter((application) => application.status == 'APPROVED')
+        const rejected = allApplications.filter((application) => application.status == 'REJECTED')
+        
         return res.status(200).json({
             applications:{
                 pending,
                 approved,
-                rejected
+                rejected,
+                allApplications
             },
             message:'Application details fetched',
             error:null
@@ -120,4 +139,6 @@ router.get('/application-details', async (req, res) => {
         })
     }
 })
-module.exports = router
+router.post('/create-order', paymentController.createOrder)
+router.post('/verify-payment', paymentController.verifyPayment)
+module.exports = router 

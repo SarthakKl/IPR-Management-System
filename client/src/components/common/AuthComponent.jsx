@@ -39,7 +39,7 @@ function AuthComponent({handleLogin, handleSignup, errorEncountered, setError, u
                             </button>
                         </form>
                         <div
-                            className = {errorEncountered==''?'error-div-hidden':'error-div-visible'}
+                            className = {errorEncountered===''?'error-div-hidden':'error-div-visible'}
                         >
                             {errorEncountered}
                         </div>
@@ -51,7 +51,7 @@ function AuthComponent({handleLogin, handleSignup, errorEncountered, setError, u
                 </div>
             }
             {
-                !onLoginPage && userType == 'client' && verificationState &&
+                !onLoginPage && userType === 'client' && verificationState &&
                 <ClientSignup 
                     handleSignup={handleSignup} 
                     errorEncountered = {errorEncountered}
@@ -60,7 +60,7 @@ function AuthComponent({handleLogin, handleSignup, errorEncountered, setError, u
                 />
             }
             {
-                !onLoginPage && userType == 'reviewer' && verificationState &&
+                !onLoginPage && userType === 'reviewer' && verificationState &&
                 <ReviewerSignup 
                     handleSignup={handleSignup} 
                     errorEncountered = {errorEncountered}

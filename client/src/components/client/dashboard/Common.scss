@@ -1,4 +1,4 @@
-.pending,.approved,.rejected{
+.applied,.pending,.approved,.rejected{
     padding: 2rem;
     .titile{
         border-bottom: 1px solid rgb(201, 201, 201);
@@ -10,7 +10,7 @@
     table{
         width: 100%;
     }
-    .pending-table,.approved-table, .rejected-table{
+    .applied-table,.pending-table,.approved-table, .rejected-table{
         th{
             background: rgba(245, 245, 245, 0.521);
         }
@@ -44,4 +44,26 @@
             }
         }
     }
+}
+
+.error{
+    background: #ff153433;
+    color: #6e0202;
+    padding:3px 8px;
+    border-radius: 7px;
+    width: 80px;
+    display: block;
+    text-align: center;
+}
+.success{
+    background: #00ff0d38;
+    color: #026e41;
+    padding:3px 8px;
+    border-radius: 7px;
+    width: 80px;
+    display: block;
+    text-align: center;
+
+
+
 }

@@ -10,13 +10,14 @@ import {actions} from '../../redux/clientSlice'
 import ApplyModal from '../../components/client/dashboard/Forms/ApplyModal'
 
 function Dashboard() {
-  const cardTitle = ['Approved', 'Pending', 'Rejected']
+  const cardTitle = ['Applied', 'Approved', 'Pending', 'Rejected']
   const categoryCount = useSelector((state) => [
+    state.clientReducer.allApplications.length,
     state.clientReducer.approved.length,  
     state.clientReducer.pending.length, 
     state.clientReducer.rejected.length
   ])
-  const catRoutes = ['approved', 'pending', 'rejected']
+  const catRoutes = ['applied', 'approved', 'pending', 'rejected']
   const [iprType, setIprType ] = useState('patent')
   const [applyModal, showApplyModal] = useState(false)
   const navigate = useNavigate()
