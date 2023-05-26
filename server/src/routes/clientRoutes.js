@@ -38,6 +38,7 @@ router.use( async (req, res, next) => {
         const token = req.headers.authorization || req.headers.Authorization
         const payload = await jwt.verify(token, process.env.CLIENT_JWT_SECRET)
         const client = await Client.findById(payload._id)
+        console.log('In client routes' + payload, client)
         if(!client)
             return res.json({
                 admin:"Client not found"
