@@ -40,8 +40,7 @@ router.use( async (req, res, next) => {
         const client = await Client.findById(payload._id)
         if(!client)
             return res.json({
-                message:'Client not found',
-                error:null
+                admin:"Client not found"
             })
         req.clientId = client._id;
         req.client = client
@@ -110,15 +109,17 @@ router.post('/apply', upload.fields(uploadFields), async (req, res) => {
 })
 router.get('/application-details', async (req, res) => {
     try {
+        console.log("in application details")
         const selectedAttr = '_id title status description ipr_type createdAt payment_status'
         const allApplications = await Application.find({client_id:req.clientId})
                                                  .select(selectedAttr)
                                                  .sort({createdAt:-1})
+        console.log(allApplications)
         // allApplications.sort((a, b) => a.timestamp - b.timestamp)
         // const pending = await Application.find({client_id:req.clientId,status:'PENDING'}).select(selectedAttr)
         // const approved = await Application.find({client_id:req.clientId,status:'APPROVED'}).select(selectedAttr)
         // const rejected = await Application.find({client_id:req.clientId,status:'REJECTED'}).select(selectedAttr)
-        const pending = allApplications.filter((application) => application.status == 'PENDING')
+        const pending = allApplications.filter((application) => application.status == 'PENDING' && application.payment_status == 'PAID')
         const approved = allApplications.filter((application) => application.status == 'APPROVED')
         const rejected = allApplications.filter((application) => application.status == 'REJECTED')
         

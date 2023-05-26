@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import { fetchAllApplications } from '../../utils/api/reviewerApi';
 import Button from '../ui/button/Button';
 import ApplicationModal from './ApplicationModal';
+import { getClientDetails } from '../../utils/api/reviewerApi';
 import './SearchDatabase.scss'
 
 const SearchDatabase = () => {
@@ -169,6 +170,7 @@ const SearchDatabase = () => {
             <ApplicationModal
                 applicationShown = {applicationShown}
                 showApplicationState = {showApplicationState}
+                getClientDetails={getClientDetails}
             />
         </div>
     )

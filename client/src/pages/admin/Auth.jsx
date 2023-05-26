@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import AuthComponent from '../../components/common/AuthComponent'
-import { reviewerLogin, reviewerSignup } from '../../utils/api/reviewerApi'
 import {actions, deauthenticateUser} from '../../redux/authSlice'
+import { adminLogin, adminSignup } from '../../utils/api/adminApi'
 
 function Auth() {
   const [errorEncountered, setError] = useState('')
@@ -15,24 +15,22 @@ function Auth() {
     const pass = e.target[1].value
   
     // console.log(email, pass)
-    const response = await reviewerLogin(email, pass)
+    const response = await adminLogin(email, pass)
     
     if(response.error){
       console.log(response.error)
       return setError(response.error)
     }
-    if(response.message === 'Email sent successfully'){
+    // console.log(response)
+    if(response.message === 'Email sent Successfully'){
       return setVerificationState('Email sent successfully. You can close this window')
-    }
-    if(response.message === 'Not verified by admin'){
-      return setVerificationState('Your account is not yet verified by admin. Please contact your administrator')
     }
     // console.log(response.client, response.token)
     console.log(response)
-    dispatch(actions.setReviewerToken(response.token))
-    dispatch(actions.setUserName(response.reviewer.fullname))
-    localStorage.setItem('REVIEWER_TOKEN', response.token)
-    localStorage.setItem('REVIWER_NAME',JSON.stringify(response.reviewer.fullname))
+    dispatch(actions.setAdminToken(response.token))
+    dispatch(actions.setUserName(response.admin.fullname))
+    localStorage.setItem('ADMIN_TOKEN', response.token)
+    localStorage.setItem('ADMIN_NAME',JSON.stringify(response.admin.fullname))
   }
   async function handleSignup(e){
     e.preventDefault()
@@ -47,7 +45,7 @@ function Auth() {
     if(pass !== confirmPass){
       return setError("Password doesn't match")
     }
-    const response = await reviewerSignup(fullname, email, pass, mobile, address)
+    const response = await adminSignup(fullname, email, pass, mobile, address)
     console.log(response)
 
     if(response.error){
@@ -62,7 +60,7 @@ function Auth() {
     handleSignup={handleSignup}
     errorEncountered={errorEncountered}
     setError={setError}
-    userType='reviewer'
+    userType='admin'
     verificationState={verificationState}
   />
   )

@@ -13,6 +13,7 @@ const authSlice = createSlice({
             state.clientToken = action.payload
         },
         setAdminToken(state, action){
+            console.log(action.payload)
             state.adminToken = action.payload
         },
         setReviewerToken(state, action){

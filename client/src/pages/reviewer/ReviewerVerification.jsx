@@ -9,11 +9,16 @@ function ReviewerVerification() {
     const [message, setMessage] = useState('Verifying email...')
     const navigate = useNavigate()
     const dispatch = useDispatch()
+    const [isAdminVerified, setAdminVerifiedState] = useState(true)
+
 
     const checkToken = async () => {
         const response = await checkVerificationToken(token)
         if(response.error){
             return setMessage(response.error)
+        }
+        if(response.messsage === 'Not verified by admin'){
+          return setAdminVerifiedState(false)
         }
         dispatch(actions.setReviewerToken(response.token))
         dispatch(actions.setUserName(response.reviewer.fullname))
@@ -28,6 +33,12 @@ function ReviewerVerification() {
   return (
     <div className='main-div'>
         {message}
+        {
+          !isAdminVerified &&
+          <div className='outer-div'>
+            Your account is not verified by admin yet. Please contact your administrator.
+          </div>
+        }
     </div>
   )
 }

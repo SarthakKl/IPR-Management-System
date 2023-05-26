@@ -3,16 +3,15 @@ import './Common.scss'
 import {useSelector} from 'react-redux'
 import { editTime } from '../../common/EditTime'
 import PaymentModal from './PaymentModal'
-
-// import ApplicationModal from './ApplicationModal'
 import Button from '../../ui/button/Button'
+import ApplicationModal from './ApplicationModal'
 const className ={
   "PAID":"success",
   "UNPAID":"error"
 }
 function Applied() {
   const allApplications = useSelector((state) => state.clientReducer.allApplications)
-  const [applicationId, setApplicationId] = useState('')
+  const [application, setApplication] = useState('')
   const [clientId, setClientId] = useState('')
   const [paymentModal, setPaymentModal] = useState({
     show: false,
@@ -30,7 +29,6 @@ function Applied() {
   return (
     <div className='applied'>
         <h3 className="titile">Applied</h3>
-        
         <table className='applied-table'>
           <thead>
             <tr>
@@ -60,18 +58,18 @@ function Applied() {
                       application.payment_status ==="UNPAID" ? 
                       <Button
                         onClick={()=>paymentHandler.show(application)}
-                      >Pay</Button>:
+                      >
+                        Pay
+                      </Button>:
                       <Button  
                         onClick = {() => {
-                          setApplicationId(application._id)
-                          setClientId(application.client_id)
+                          setApplication(application)
                           console.log(clientId)
                         }}
                       >
-                      View
+                        View
                       </Button>
                     }
-                    
                   </td>
                 </tr>
               )
@@ -79,12 +77,13 @@ function Applied() {
           }
           </tbody>
         </table>
-        {/* <ApplicationModal 
-          setApplicationId = {setApplicationId}
-          applicationId = {applicationId}
-          clientId = {clientId}
-          parentComponent = 'reviewing'
-        /> */}
+        {
+          application &&
+          <ApplicationModal
+            application = {application}
+            setApplication = {setApplication}
+          />
+        }
         <PaymentModal
           application={paymentModal.application}
           show={paymentModal.show}
@@ -98,6 +97,6 @@ function Applied() {
         }
     </div>
   )
-}
+} 
 
 export default Applied

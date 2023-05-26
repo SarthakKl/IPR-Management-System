@@ -2,7 +2,7 @@ import React from 'react'
 import '../common/AuthComponent.scss'
 import logo from '../../assets/logo.png'
 
-function ReviewerSignup({handleSignup, errorEncountered, setPageState, setError}) {
+function AdminSignup({handleSignup, errorEncountered, setPageState, setError}) {
     const handleNav = () => {
         setError('')
         setPageState(true)
@@ -91,4 +91,4 @@ function ReviewerSignup({handleSignup, errorEncountered, setPageState, setError}
   )
 }
 
-export default ReviewerSignup
+export default AdminSignup

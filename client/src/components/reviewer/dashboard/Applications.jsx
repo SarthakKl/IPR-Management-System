@@ -18,7 +18,7 @@ function Applications() {
   // }
   return (
     <div className='pending'>
-        <h3 className="title">Applications</h3>
+        <h3 className="titile">Applications</h3>
         <table className='pending-table'>
           <thead>
             <tr>

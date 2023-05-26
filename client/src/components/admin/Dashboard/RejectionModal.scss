@@ -1,0 +1,9 @@
+.rejection-modal{
+    z-index: 9999999;
+    .rejection-modal-body{
+        textarea{
+            min-width: 465px;
+            min-height: 100px
+        }
+    }
+}

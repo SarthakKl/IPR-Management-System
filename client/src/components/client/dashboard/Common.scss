@@ -1,4 +1,4 @@
-.applied,.pending,.approved,.rejected{
+.applied,.pending,.approved,.rejected, .review-signup, .search-database{
     padding: 2rem;
     .titile{
         border-bottom: 1px solid rgb(201, 201, 201);
@@ -10,7 +10,7 @@
     table{
         width: 100%;
     }
-    .applied-table,.pending-table,.approved-table, .rejected-table{
+    .applied-table,.pending-table,.approved-table, .rejected-table, .review-signup-table{
         th{
             background: rgba(245, 245, 245, 0.521);
         }
@@ -42,6 +42,9 @@
                 border-radius: 5px;
                 padding: 1px 2px;
             }
+        }
+        button{
+            min-width: 80px;
         }
     }
 }

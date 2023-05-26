@@ -1,0 +1,39 @@
+.reviewer-details-wrapper{
+    width: 100%;
+    .input_wrapper{
+
+        label{
+            display: block;
+        }
+        input{
+            width: 100%;
+            padding: .5rem 1rem;
+            border-radius: 5px;
+            outline: none;
+            border: 1px solid rgb(200, 200, 200);
+        }
+    }
+}
+.reviewer-detail-footer{
+    button{
+        // padding: .8rem 0rem !important;
+        min-width: 90px;
+        color: #fff !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 40px;
+    }
+}
+.overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.05);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

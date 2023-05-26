@@ -26,8 +26,10 @@ function ReviewerRoutes() {
       dispatch(actions.setReviewerToken(token))
       axios.defaults.headers.common['authorization'] = reviewerToken
     }
-    else
+    else{
+      console.log("Finding reviewer")
       return <Auth/>
+    }
   }
   else
     axios.defaults.headers.common['authorization'] = reviewerToken

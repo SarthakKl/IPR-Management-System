@@ -1,31 +1,23 @@
-import Alert from 'react-bootstrap/Alert';
 import Button from '../ui/button/Button';
 import './Alert.scss'
+import { Modal } from 'react-bootstrap';
 
-function AlertDismissible({showAlert, setAlertState, content, confirmAlert}) {
-    
-    const handleOK = () => {
-        setAlertState(false)
-        confirmAlert()
-    }
-    
+function Alert({showAlert, setAlertState, content, confirmAlert}) {
   return (
-    <>
-      <Alert show={showAlert} variant="light" className='alert'>
-        <p>
-          {content}
-        </p>
-        <div className="d-flex justify-content-end">
-         <Button onClick={handleOK} variant="outline-success">
+    <Modal show={showAlert} variant="light" className='alert' centered>
+      <Modal.Body>
+        {content}
+      </Modal.Body>
+      <div className='event-buttons'> 
+        <Button onClick={confirmAlert} variant="outline-success">
             OK
-          </Button>
-          <Button onClick={() => setAlertState(false)} variant="outline-danger">
-            Cancel
-          </Button>
-        </div>
-      </Alert>
-    </>
+        </Button>
+        <Button onClick={() => setAlertState(false)} variant="outline-danger">
+          Cancel
+        </Button>
+      </div>
+    </Modal>
   );
 }
 
-export default AlertDismissible;
+export default Alert;

@@ -7,22 +7,29 @@ router.use((req, res, next) => {
     try {
         console.log('hello jwt')
         const token = req.headers.authorization
-        jwt.verify(token, process.env.REVIEWER_JWT_SECRET, (error, payload) => {
-            if(error){
-                console.log(error)
-                return res.json(
-                    error
-                )
-            }
-            console.log(payload._id)
+        const payload = jwt.verify(token, process.env.REVIEWER_JWT_SECRET)
+        if(payload._id){
             req.reviewerId = payload._id
             next()
-        })
+        }
     } catch (error) {
         console.log(error)
         res.status(403).json({
             error:error.message
         })
+    }
+})
+router.get('/fetch-all-applications', async (req, res) => {
+    try {
+        const allApplications = await Application.find({status:'APPROVED'})
+        // console.log(allApplications)
+        return res.status(200).json({
+            allApplications,
+            error:null
+        })
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({error})
     }
 })
 
@@ -48,22 +55,11 @@ router.get('/fetch-applications', async (req, res)=>{
         })
     }
 })
-router.get('/fetch-all-applications', async (req, res) => {
-    try {
-        const allApplications = await Application.find({status:['APPROVED', 'REJECTED']})
-        console.log(allApplications)
-        return res.status(200).json({
-            allApplications,
-            error:null
-        })
-    } catch (error) {
-        console.log(error)
-        return res.status(500).json({error})
-    }
-})
+
 router.get('/client-details', async (req, res) => {
     try {
         const client = await Client.findOne({_id: req.query.clientId})
+        console.log(client)
         return res.status(200).json({
             client, 
             error:null

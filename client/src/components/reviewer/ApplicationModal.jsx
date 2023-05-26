@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Spinner from 'react-bootstrap/esm/Spinner';
 import Modal from 'react-bootstrap/Modal'
-import { getClientDetails } from '../../utils/api/reviewerApi';
 import Button from '../ui/button/Button';
 import ApplicationDetails from './dashboard/ApplicationDetails';
 
-const ApplicationModal = ({applicationShown, showApplicationState}) => {
+const ApplicationModal = ({applicationShown, showApplicationState, getClientDetails}) => {
     const [isLoading, setIsLoading] = useState(false)
     const [errorEncountered, setError] = useState('')
     const [completeApplication, setApplication] = useState({application: applicationShown})

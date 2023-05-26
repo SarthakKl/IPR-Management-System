@@ -2,6 +2,10 @@
     display: flex;
     justify-content:space-between;
     padding:10px;
+    position:sticky;
+    background-color: aliceblue;
+    z-index: 100;
+    top:0px;
     .logo{
         display: flex;
         justify-content: center
@@ -26,6 +30,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap');
 
 /* Homepage */
+.div-2{
+    
+}
 .landing-div{
     width: 90%;
     margin: auto;
@@ -38,6 +45,7 @@
 .landing-div .div-1{
     max-width: 600px;
     text-align: justify;
+    margin-top: 80px;
     .btn{
         height: 40px;
         width: 100px;

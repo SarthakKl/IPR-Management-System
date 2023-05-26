@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux'
 
 function Auth() {
   const [errorEncountered, setError] = useState('')
-  const [verificationState, setVerificationState] = useState(true)
+  const [verificationState, setVerificationState] = useState('')
   const dispatch = useDispatch()
 
   async function handleLogin(e) {
@@ -22,7 +22,7 @@ function Auth() {
       return setError(response.error)
     }
     if(response.message === 'Email sent successfully'){
-      return setVerificationState(false)
+      return setVerificationState('Email sent successfully. You can close this window')
     }
     // console.log(response.client, response.token)
     dispatch(actions.setClientToken(response.token))

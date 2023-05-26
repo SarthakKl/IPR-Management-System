@@ -19,6 +19,14 @@ const schema = mongoose.Schema({
         type:String,
         required:true
      },
+     isAdminVerified:{
+      type:Boolean,
+      default:false
+     },
+     rejectionReason:{
+      type:String,
+      default:''
+     },
      password:{
         type:String,
         required:true

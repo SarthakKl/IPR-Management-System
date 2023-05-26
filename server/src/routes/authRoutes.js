@@ -4,6 +4,7 @@ const { helper } = require('../utils/mailHelper')
 const jwt = require('jsonwebtoken')
 const Reviewer = require('../models/Reviewer')
 const Application = require('../models/Application')
+const Admin = require('../models/Admin')
 
 router.post('/client-login', async (req, res) => {
     try {
@@ -102,12 +103,31 @@ router.patch('/verify-email', async (req, res) => {
                 if (reviewer) {
                     reviewer.verified = true;
                     await reviewer.save()
+                    if(!reviewer.isAdminVerified){
+                        return res.json({
+                            message:'Not verified by admin',
+                            error:null
+                        })
+                    }
                     const token = reviewer.getAuthToken()
                     console.log(token)
                     return res.status(200).json({
                         token,
                         reviewer,
                         error: null,
+                    })
+                }
+                const admin = await Admin.findOne({_id:userId})
+                if(admin){
+                    admin.verified = true
+                    await admin.save()
+                    // console.log(admin)
+                    const token = admin.getAuthToken()
+                    // console.log(token)
+                    return res.status(200).json({
+                        token, 
+                        admin, 
+                        error:null
                     })
                 }
                 else {
@@ -172,6 +192,12 @@ router.post('/reviewer-login', async (req, res) => {
             }
             return res.status(200).json(mailer)
         }
+        if(!reviewer.isAdminVerified){
+            return res.json({
+                message:'Not verified by admin',
+                error:null
+            })
+        }
         const token = reviewer.getAuthToken()
         console.log(reviewer)
         return res.status(200).json({
@@ -184,6 +210,66 @@ router.post('/reviewer-login', async (req, res) => {
         console.log(error)
         return res.status(500).json({
             message: error.message
+        })
+    }
+})
+router.post('/admin-login', async (req, res) => {
+    try {
+        console.log('finding user')
+        const response = await Admin.findByCredentials({ email: req.body.email, password: req.body.password })
+        if (response.error)
+            return res.status(404).json(response.error)
+        console.log(req.body.email)
+        const admin = response.admin
+        // console.log(admin)
+        if (!admin.verified) {
+            console.log(admin)
+            const mailer = await helper(admin._id, req.body.email, 'admin')
+            if (mailer.error) {
+                return res.status(500).json(mailer)
+            }
+            console.log(mailer)
+            return res.status(200).json(mailer)
+        }
+        const token = admin.getAuthToken()
+        // console.log(admin)
+        console.log(token)
+        return res.status(200).json({
+            message: 'Hello',
+            admin,
+            token,
+            error: null
+        })
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({
+            message: error.message
+        })
+    }
+})
+router.post('/admin-signup', async (req, res) => {
+    try {
+        console.log('admin signup')
+        const admin = new Admin({
+            fullname: req.body.fullname,
+            email: req.body.email,
+            mobile: req.body.mobile,
+            address: req.body.address,
+            password: req.body.password
+        })
+        await admin.save()
+
+        const mailer = helper(admin._id, req.body.email, 'admin')
+        console.log(mailer)
+
+        if (mailer.error)
+            return res.status(500).json(mailer)
+
+        return res.status(200).json(mailer)
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({
+            error: error.message
         })
     }
 })

@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Outlet, useNavigate } from 'react-router-dom'
-
 import '../client/Dashboard.scss'
 import Card from '../../components/ui/Cards/Card'
 import {actions} from '../../redux/reviewerSlice'

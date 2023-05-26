@@ -25,8 +25,8 @@ function ApplicationModal({ setApplicationId, applicationId, clientId, parentCom
             if (response.error) {
                 return setError(response.error)
             }
-            setApplication({application: response.application, clientDetails})
-            if(parentComponent == 'applications')
+            setApplication({application: response.application, clientDetails:clientDetails.client})
+            if(parentComponent === 'applications')
                 dispatch(actions.reviewApplication(applicationId))
         } catch (error) {
             console.log(error)

@@ -6,8 +6,8 @@ const mongoose = require('mongoose')
 const authRouter = require('./src/routes/authRoutes')
 const clientRouter = require('./src/routes/clientRoutes')
 const reviewerRouter = require('./src/routes/reviewerRoutes')
-// const { urlencoded } = require('express')
-// const bodyParser = require('body-parser')
+const adminRouter = require('./src/routes/adminRoutes')
+
 //We can change the header of the preflight request in the cors
 app.use(cors())
 env.config()
@@ -18,7 +18,6 @@ const connect = async () => {
         await mongoose.connect(process.env.MONGODB_URI, {})
         console.log('Connected with database')
     } catch (error) {
-        console.error("Bhosdk .Env File Kaha hai")
         console.error(" ")
         console.error(error.message)
     }
@@ -29,6 +28,7 @@ const port = process.env.PORT || 3002
 app.use('/', authRouter)
 app.use('/client',clientRouter)
 app.use('/reviewer', reviewerRouter)
+app.use('/admin', adminRouter)
 app.get('/', (req, res) => {
     res.send("Welcome to IPR Management System API")
 })
