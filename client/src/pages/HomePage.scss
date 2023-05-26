@@ -33,6 +33,29 @@
 .div-2{
     
 }
+
+.seconddiv{
+
+    // background-color: red;
+    display: flex;
+    >div {
+        flex: 1;
+        border-radius: 10px;
+    }
+    .div-2{
+        padding: 20px;
+        margin-top: 35px;
+        text-align: justify;
+    }
+    .second-image{
+        position: relative;
+        img{
+            width: 100%;
+            display: block;
+            border-radius: 7px;
+        }
+    }
+}
 .landing-div{
     width: 90%;
     margin: auto;
@@ -99,4 +122,9 @@
     100%{
         background-position: 700px;
     }
+}
+
+.footer{
+
+
 }

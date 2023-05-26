@@ -15,17 +15,16 @@ function NavBar() {
   return (
     <div className='header'>
         <div>
-          <img src = {logo} width = '80' height='50'/>
+          <img src = {logo} width = '80' height='50' alt = 'ipr logo'/>
         </div>
         <div className = 'right-header'>  
             <div className='profile'>
                 <span className='username'>{userName}</span>
                 <Dropdown>
                   <Dropdown.Toggle>
-                    <img src = {profile} height = '40' width= '40'/>
+                    <img src = {profile} height = '40' width= '40' alt = 'profile placeholder'/>
                   </Dropdown.Toggle>
                   <Dropdown.Menu>
-                    <Dropdown.Item>Dashboard</Dropdown.Item>
                     <Dropdown.Item>Profile</Dropdown.Item>
                     <Dropdown.Item
                       onClick={()=>{

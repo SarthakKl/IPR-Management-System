@@ -45,20 +45,22 @@ function Homepage() {
                         <img src="https://i.ibb.co/jJv1FC0/pngwing-com.png" alt="" />
                     </div>
                 </div>
-                <div className="landing-div">
-                <div>
-                    <img src={homeImage} alt="2" />
-                </div>
-                <div className='div-2'>
-                    <p className='main-text-helper'>
-                        Within our IPR management system, our patent management framework 
-                        comprises essential components to effectively protect, manage, and 
-                        leverage our patents. We begin by conducting thorough patent searches 
-                        and analyzing prior art to evaluate the patentability and novelty of our 
-                        inventions. 
-                    </p>
-                    <Button>Read More</Button>
-                </div>
+                <div className="landing-div seconddiv">
+                    <div className='second-image'>
+                        <img src={homeImage} alt="2" />
+                    </div>
+                    <div className='div-2'>
+                        <p className='main-text' >Make Your Own...</p>
+
+                        <p className='main-text-helper'>
+                            Within our IPR management system, our patent management framework 
+                            comprises essential components to effectively protect, manage, and 
+                            leverage our patents. We begin by conducting thorough patent searches 
+                            and analyzing prior art to evaluate the patentability and novelty of our 
+                            inventions. 
+                        </p>
+                        <Button>Read More</Button>
+                    </div>
                     
                 </div>
             </div>
@@ -68,6 +70,9 @@ function Homepage() {
                     onHide = {() => showLoginModal(false)}
                     modalTitle = {modalTitle}
                 />
+            </div>
+            <div className='footer'>
+
             </div>
         </div>
     )

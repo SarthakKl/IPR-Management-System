@@ -6,7 +6,8 @@ import { adminLogin, adminSignup } from '../../utils/api/adminApi'
 
 function Auth() {
   const [errorEncountered, setError] = useState('')
-  const [verificationState, setVerificationState] = useState('')
+  // const [verificationState, setVerificationState] = useState('')
+  const [successMessage, setSuccessMessage] = useState('')
   const dispatch = useDispatch()
 
   async function handleLogin(e) {
@@ -22,8 +23,8 @@ function Auth() {
       return setError(response.error)
     }
     // console.log(response)
-    if(response.message === 'Email sent Successfully'){
-      return setVerificationState('Email sent successfully. You can close this window')
+    if(response.message === 'Email sent successfully'){
+      return setSuccessMessage('Email sent successfully. You can close this window')
     }
     // console.log(response.client, response.token)
     console.log(response)
@@ -53,7 +54,7 @@ function Auth() {
       return setError(response.error)
     }
     if(response.message === 'Email sent successfully')
-      return setVerificationState(false)
+      return setSuccessMessage(false)
   }
   return (<AuthComponent
     handleLogin={handleLogin}
@@ -61,7 +62,8 @@ function Auth() {
     errorEncountered={errorEncountered}
     setError={setError}
     userType='admin'
-    verificationState={verificationState}
+    successMessage = {successMessage}
+    setSuccessMessage={setSuccessMessage}
   />
   )
 }

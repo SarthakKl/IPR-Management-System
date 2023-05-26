@@ -51,7 +51,7 @@ const applicationSchema = new mongoose.Schema({
     order_id:String,
     application_fee:{
         type:Number, 
-        default:500
+        default:5000
     }
     
 },{timestamps:true})

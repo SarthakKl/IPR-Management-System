@@ -6,8 +6,9 @@ import {actions} from '../../redux/authSlice'
 
 function Auth() {
   const [errorEncountered, setError] = useState('')
-  const [verificationState, setVerificationState] = useState('')
+  // const [verificationState, setVerificationState] = useState('')
   const dispatch = useDispatch()
+  const [successMessage, setSuccessMessage] = useState('')
 
   async function handleLogin(e) {
     e.preventDefault()
@@ -24,7 +25,7 @@ function Auth() {
       return setError(response.error)
     }
     if(response.message === 'Email sent successfully'){
-      return setError('Email sent successfully. You can close this window')
+      return setSuccessMessage('Email sent successfully. You can close this window')
     }
     if(response.message === 'Not verified by admin'){
       return setError('Your account is not yet verified by admin. Please contact your administrator')
@@ -57,8 +58,10 @@ function Auth() {
       console.log(response.error)
       return setError(response.error)
     }
-    if(response.message === 'Email sent successfully')
-      return setVerificationState(false)
+    if(response.message === 'Email sent successfully'){
+      console.log("rerer", response)
+      return setSuccessMessage('Email sent successfully. You can close this window')
+    }
   }
   return (<AuthComponent
     handleLogin={handleLogin}
@@ -66,7 +69,8 @@ function Auth() {
     errorEncountered={errorEncountered}
     setError={setError}
     userType='reviewer'
-    verificationState={verificationState}
+    successMessage={successMessage}
+    setSuccessMessage={setSuccessMessage}
   />
   )
 }

@@ -3,9 +3,9 @@ import { toast } from 'react-toastify'
 
 const ApplicationForm = (props,ref) => {
     const { createApplication } = props
-    const [desc, setDesc] = useState('hellow woowo')
-    const [title, setTitle] = useState('miya bhai')
-    const [docUrl, setDocUrl] = useState('https://www.youtube.com/')
+    const [desc, setDesc] = useState('This IPR is for test purpose')
+    const [title, setTitle] = useState('Test IPR')
+    const [docUrl, setDocUrl] = useState('https://www.proind.in/product/lpms/ipr-management-system/')
     const [form1, setForm1] = useState(null)
     const [form3, setForm3] = useState(null)
     const [form5, setForm5] = useState(null)

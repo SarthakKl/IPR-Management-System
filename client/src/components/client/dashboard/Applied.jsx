@@ -38,6 +38,7 @@ function Applied() {
               <th>Status</th>
               <th>Description</th>
               <th>Applied At</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>

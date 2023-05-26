@@ -161,7 +161,7 @@ router.post('/reviewer-signup', async (req, res) => {
         })
         await reviewer.save()
 
-        const mailer = helper(reviewer._id, req.body.email, 'reviewer')
+        const mailer = await    helper(reviewer._id, req.body.email, 'reviewer')
         console.log(mailer)
 
         if (mailer.error)
@@ -218,7 +218,7 @@ router.post('/admin-login', async (req, res) => {
         console.log('finding user')
         const response = await Admin.findByCredentials({ email: req.body.email, password: req.body.password })
         if (response.error)
-            return res.status(404).json(response.error)
+            return res.status(404).json({error:response.error})
         console.log(req.body.email)
         const admin = response.admin
         // console.log(admin)

@@ -6,7 +6,8 @@ import { useDispatch } from 'react-redux'
 
 function Auth() {
   const [errorEncountered, setError] = useState('')
-  const [verificationState, setVerificationState] = useState('')
+  // const [verificationState, setVerificationState] = useState('')
+  const [successMessage, setSuccessMessage] = useState('')
   const dispatch = useDispatch()
 
   async function handleLogin(e) {
@@ -22,7 +23,7 @@ function Auth() {
       return setError(response.error)
     }
     if(response.message === 'Email sent successfully'){
-      return setError('Email sent successfully. You can close this window')
+      return setSuccessMessage('Email sent successfully. You can close this window')
     }
     // console.log(response.client, response.token)
     dispatch(actions.setClientToken(response.token))
@@ -55,8 +56,8 @@ function Auth() {
       console.log(response.error)
       return setError(response.error)
     }
-    if(response.message === 'successful')
-      return setVerificationState(false)
+    if(response.message === 'Email sent successfully')
+      return setSuccessMessage('Email sent successfully. You can close this window')
   }
   return (
     <AuthComponent 
@@ -65,7 +66,8 @@ function Auth() {
       errorEncountered = {errorEncountered} 
       setError = {setError}
       userType = 'client'
-      verificationState = {verificationState}
+      successMessage={successMessage}
+      setSuccessMessage={setSuccessMessage}
     />
   )
 }

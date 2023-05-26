@@ -35,7 +35,7 @@ router.get('/fetch-all-applications', async (req, res) => {
 
 router.get('/fetch-applications', async (req, res)=>{
     try {
-        const pendingApplications = await Application.find({status:'PENDING'})
+        const pendingApplications = await Application.find({status:'PENDING', payment_status:'PAID'})
         const reviewingApplications = await Application.find({reviewer_id:req.reviewerId, status:'REVIEWING'})
         const reviewedApplications = await Application.find({reviewer_id:req.reviewerId, status:['APPROVED', 'REJECTED']})
         console.log(req.reviewerId, reviewedApplications)

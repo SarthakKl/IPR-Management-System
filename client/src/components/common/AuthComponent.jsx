@@ -7,10 +7,20 @@ import AdminSignup from '../admin/AdminSignup'
 import logo from '../../assets/logo.png'
 import { toast } from 'react-toastify'
 
-function AuthComponent({handleLogin, handleSignup, errorEncountered, setError, userType, verificationState}){
+function AuthComponent({handleLogin, handleSignup, errorEncountered, setError, userType, successMessage, setSuccessMessage}){
     const [onLoginPage, setPageState] = useState(true)
 
     const notify = (msg) => toast.error(msg, {
+        position: "top-right",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    });
+    const notifySuccess = (msg) => toast.success(msg, {
         position: "top-right",
         autoClose: 2000,
         hideProgressBar: false,
@@ -19,14 +29,19 @@ function AuthComponent({handleLogin, handleSignup, errorEncountered, setError, u
         draggable: true,
         progress: undefined,
         theme: "light",
-    });
+    })
     const handleNav = () => {
         setError('')
         setPageState(false)
     }
     useEffect(() => {
-        if(errorEncountered)
-        {
+        if(successMessage){
+            notifySuccess(successMessage)
+            setSuccessMessage('')
+        }
+    }, [successMessage])
+    useEffect(() => {
+        if(errorEncountered){
             notify(errorEncountered)
             setError('')
         }
@@ -34,7 +49,7 @@ function AuthComponent({handleLogin, handleSignup, errorEncountered, setError, u
     return (
         <div className='auth_page'>
             {
-                onLoginPage && !verificationState &&
+                onLoginPage  &&
                 <div className='login_component'>
                     <div className="left_div">
                         <div className="text_message">
@@ -77,11 +92,14 @@ function AuthComponent({handleLogin, handleSignup, errorEncountered, setError, u
                                         className='auth_btns'
                                     >
                                         Login
-                                    </button> 
-                                    <div className='auth-msg'>
-                                        <span className='select-none'>Don't have an account?</span>
-                                        <span className='nav-auth-btn' onClick={handleNav}> Sign Up</span>
-                                    </div>       
+                                    </button>
+                                    {
+                                        userType !== 'admin' &&
+                                        <div className='auth-msg'>
+                                            <span className='select-none'>Don't have an account?</span>
+                                            <span className='nav-auth-btn' onClick={handleNav}> Sign Up</span>
+                                        </div>       
+                                    }
                                     <p style={{marginTop: "30px",textAlign:"center"}}>-Or-</p>
                                     <div className="other_login">
                                         <div>
@@ -92,15 +110,13 @@ function AuthComponent({handleLogin, handleSignup, errorEncountered, setError, u
                                         </div>
                                     </div>
                                 </div>
-                                
                             </div>
-                            
                         </form>
                     </div>
                 </div>
             }
             {
-                !onLoginPage && userType === 'client' && !verificationState &&
+                !onLoginPage && userType === 'client' &&
                 <ClientSignup 
                     handleSignup={handleSignup} 
                     errorEncountered = {errorEncountered}
@@ -109,7 +125,7 @@ function AuthComponent({handleLogin, handleSignup, errorEncountered, setError, u
                 />
             }
             {
-                !onLoginPage && userType === 'reviewer' && !verificationState &&
+                !onLoginPage && userType === 'reviewer' &&
                 <ReviewerSignup 
                     handleSignup={handleSignup} 
                     errorEncountered = {errorEncountered}
@@ -118,19 +134,13 @@ function AuthComponent({handleLogin, handleSignup, errorEncountered, setError, u
                 />
             }
             {
-                !onLoginPage && userType === 'admin' && !verificationState &&
+                !onLoginPage && userType === 'admin' &&
                 <AdminSignup 
                     handleSignup={handleSignup} 
                     errorEncountered = {errorEncountered}
                     setPageState = {setPageState}
                     setError = {setError}
                 />
-            }
-            {
-                verificationState &&
-                <div className='outer-div'>
-                    {verificationState}
-                </div>
             }
         </div>
     )

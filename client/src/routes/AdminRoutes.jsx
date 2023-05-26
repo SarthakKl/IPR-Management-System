@@ -20,7 +20,7 @@ function AdminRoutes() {
       console.log(token)
       const userName = localStorage.getItem('ADMIN_NAME')
       console.log(userName)
-      dispatch(actions.setUserName(userName))
+      dispatch(actions.setUserName(JSON.parse(userName)))
       dispatch(actions.setAdminToken(token))
       axios.defaults.headers.common['authorization'] = adminToken
     }
