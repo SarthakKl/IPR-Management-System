@@ -17,21 +17,23 @@ import Applied from '../components/client/dashboard/Applied'
 function ClientRoutes() {
   const dispatch = useDispatch()
   const clientToken = useSelector((state) => state.authReducer.clientToken)
+
   if(!clientToken){
-    const token = localStorage.getItem('CLIENT_TOKEN')
+    const token =  localStorage.getItem('CLIENT_TOKEN')
     if(token){
       console.log(token)
       const userName = localStorage.getItem('CLIENT_NAME')
       console.log(userName);
       dispatch(actions.setUserName(userName))
       dispatch(actions.setClientToken(token))
-      axios.defaults.headers.common['authorization'] = clientToken
+      axios.defaults.headers.common['authorization'] = token
     }
     else
       return <Auth/>
   }
-  else
+  else{
     axios.defaults.headers.common['authorization'] = clientToken
+  }
   
   return (
     <Layout>
