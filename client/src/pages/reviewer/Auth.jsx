@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import AuthComponent from '../../components/common/AuthComponent'
 import { reviewerLogin, reviewerSignup } from '../../utils/api/reviewerApi'
-import {actions, deauthenticateUser} from '../../redux/authSlice'
+import {actions} from '../../redux/authSlice'
 
 function Auth() {
   const [errorEncountered, setError] = useState('')
@@ -16,19 +16,22 @@ function Auth() {
   
     // console.log(email, pass)
     const response = await reviewerLogin(email, pass)
-    
+
+    console.log(response)
+
     if(response.error){
       console.log(response.error)
       return setError(response.error)
     }
     if(response.message === 'Email sent successfully'){
-      return setVerificationState('Email sent successfully. You can close this window')
+      return setError('Email sent successfully. You can close this window')
     }
     if(response.message === 'Not verified by admin'){
-      return setVerificationState('Your account is not yet verified by admin. Please contact your administrator')
+      return setError('Your account is not yet verified by admin. Please contact your administrator')
     }
     // console.log(response.client, response.token)
     console.log(response)
+
     dispatch(actions.setReviewerToken(response.token))
     dispatch(actions.setUserName(response.reviewer.fullname))
     localStorage.setItem('REVIEWER_TOKEN', response.token)

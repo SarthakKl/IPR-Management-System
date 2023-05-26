@@ -1,17 +1,36 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import './AuthComponent.scss'
 import ClientSignup from '../client/ClientSignup'
 import ReviewerSignup from '../reviewer/ReviewerSignup'
 import AdminSignup from '../admin/AdminSignup'
 import logo from '../../assets/logo.png'
+import { toast } from 'react-toastify'
+
 function AuthComponent({handleLogin, handleSignup, errorEncountered, setError, userType, verificationState}){
     const [onLoginPage, setPageState] = useState(true)
 
+    const notify = (msg) => toast.error(msg, {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    });
     const handleNav = () => {
         setError('')
         setPageState(false)
     }
+    useEffect(() => {
+        if(errorEncountered)
+        {
+            notify(errorEncountered)
+            setError('')
+        }
+    }, [errorEncountered])
     return (
         <div className='auth_page'>
             {
@@ -35,7 +54,7 @@ function AuthComponent({handleLogin, handleSignup, errorEncountered, setError, u
                                 <div className="welcome_text">
                                     <h2>Login</h2>
                                     <p>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, eum. Deleniti dolores voluptatibus ab architecto optio.
+                                        Secure Your Intellectual Property
                                     </p>    
                                 </div>
                                 
@@ -77,12 +96,6 @@ function AuthComponent({handleLogin, handleSignup, errorEncountered, setError, u
                             </div>
                             
                         </form>
-                        <div
-                            className = {errorEncountered===''?'error-div-hidden':'error-div-visible'}
-                        >
-                            {errorEncountered}
-                        </div>
-                        
                     </div>
                 </div>
             }

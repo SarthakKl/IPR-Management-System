@@ -28,7 +28,7 @@ function ClientSignup({handleSignup, errorEncountered, setPageState, setError}) 
                             <div className="welcome_text">
                                 <h2>Signup</h2>
                                 <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, eum. Deleniti dolores voluptatibus ab architecto optio.
+                                Secure Your Intellectual Property
                                 </p>    
                             </div>
                             <div className="inputs">

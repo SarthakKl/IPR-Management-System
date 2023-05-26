@@ -51,15 +51,15 @@ module.exports= sendEmail = async (receiverEmail,subject, link) => {
         html:`<div style="background-color:#F9F9F9; padding:12px"><h2>Hello,Verfiy your account by clicking on the Link.<br>${link}<p style="color:#000000; background-color:#F5EFE6"; text-align:center">Valid only for 10 minutes</p></div>`, // html body
       };
 
+      await transport.sendMail(mailOptions);
       
-        await transport.sendMail(mailOptions);
-        
-        return {
-          message:"Email sent Successfully",
-          error:null
-        }
+      return {
+        message:"Email sent successfully",
+        error:null
+      }
 
-    } catch (error) {
+    } 
+    catch (error) {
         console.log("this is where i am getting invalid grant error")
         console.log(error)
         return {

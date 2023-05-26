@@ -1,4 +1,5 @@
 import React, {useState } from 'react'
+import {Link} from 'react-router-dom'
 import '../../client/dashboard/Common.scss'
 import {useSelector} from 'react-redux'
 import Button from '../../ui/button/Button'
@@ -12,8 +13,12 @@ function Reviewing() {
 
   return (
     <div className='pending'>
-        <h3 className="titile">Reviewing</h3>
-        
+        <div className = 'component-header'>
+          <h3 className="titile">Reviewing</h3>
+          <Link to = '/reviewer/search-database'target="_blank">
+            <Button variant = 'success'>Show Database</Button>
+          </Link>
+        </div>
         <table className='pending-table'>
           <thead>
             <tr>

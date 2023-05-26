@@ -117,7 +117,7 @@
         height: 100%;
         display: flex;
         .left_div{
-            background: #fedfdcf1;
+            background: #fedfdcf8;
             flex: 1;
             display: grid;
             align-items: center;
@@ -196,6 +196,9 @@
                         background: #0472f0;
                         color: #fff;
                         margin-top: 20px;
+                    }
+                    button:hover{
+                        background:#2a8eff
                     }
                     .remember_me{
                         display: flex;

@@ -22,7 +22,7 @@ function Auth() {
       return setError(response.error)
     }
     if(response.message === 'Email sent successfully'){
-      return setVerificationState('Email sent successfully. You can close this window')
+      return setError('Email sent successfully. You can close this window')
     }
     // console.log(response.client, response.token)
     dispatch(actions.setClientToken(response.token))

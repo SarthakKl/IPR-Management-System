@@ -1,11 +1,17 @@
 .applied,.pending,.approved,.rejected, .review-signup, .search-database{
     padding: 2rem;
     .titile{
-        border-bottom: 1px solid rgb(201, 201, 201);
+        // border-bottom: 1px solid rgb(201, 201, 201);
         padding-bottom: 5px;
         margin-bottom: 0px;
         font-weight: 700;
         color: rgb(0, 72, 82);
+    }
+    .component-header{
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
     }
     table{
         width: 100%;

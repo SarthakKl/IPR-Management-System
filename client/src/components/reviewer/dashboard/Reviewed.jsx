@@ -4,6 +4,7 @@ import {useSelector} from 'react-redux'
 import { editTime } from '../../common/EditTime'
 import ApplicationModal from './ApplicationModal'
 import Button from '../../ui/button/Button'
+import { Link } from 'react-router-dom'
 
 function Reviewed() {
   const reviewed = useSelector((state) => state.reviewerReducer.reviewed)
@@ -11,7 +12,12 @@ function Reviewed() {
   const [clientId, setClientId] = useState('')
   return (
     <div className='pending'>
-        <h3 className="titile">Reviewed</h3>
+        <div className = 'component-header'>
+          <h3 className="titile">Reviewed</h3>
+          <Link to = '/reviewer/search-database'target="_blank">
+            <Button variant = 'success'>Show Database</Button>
+          </Link>
+        </div>
         
         <table className='pending-table'>
           <thead>

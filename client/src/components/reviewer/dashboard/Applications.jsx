@@ -6,6 +6,7 @@ import Button from '../../ui/button/Button'
 import { fetchApplications } from '../../../utils/api/reviewerApi'
 import ApplicationModal from './ApplicationModal'
 import { editTime } from '../../common/EditTime'
+import { Link } from 'react-router-dom'
 
 function Applications() {
 
@@ -18,7 +19,12 @@ function Applications() {
   // }
   return (
     <div className='pending'>
-        <h3 className="titile">Applications</h3>
+        <div className = 'component-header'>
+          <h3 className="titile">Applications</h3>
+          <Link to = '/reviewer/search-database'target="_blank">
+            <Button variant = 'success'>Show Database</Button>
+          </Link>
+        </div>
         <table className='pending-table'>
           <thead>
             <tr>

@@ -11,7 +11,7 @@ router.post('/client-login', async (req, res) => {
         console.log('finding user')
         const response = await Client.findByCredentials({ email: req.body.email, password: req.body.password })
         if (response.error)
-            return res.status(404).json(response.error)
+            return res.status(404).json({error:response.error})
         console.log(req.body.email)
         const client = response.client
         console.log(client)
@@ -180,19 +180,19 @@ router.post('/reviewer-login', async (req, res) => {
         console.log('finding user')
         const response = await Reviewer.findByCredentials({ email: req.body.email, password: req.body.password })
         if (response.error)
-            return res.status(404).json(response.error)
+            return res.status(404).json({error:response.error})
         console.log(req.body.email)
         const reviewer = response.reviewer
         // console.log(reviewer)
         if (!reviewer.verified) {
-            console.log(reviewer)
-            const mailer = helper(reviewer._id, req.body.email, 'reviewer')
+            console.log("ff"+reviewer)
+            const mailer = await helper(reviewer._id, req.body.email, 'reviewer')
             if (mailer.error) {
                 return res.status(500).json(mailer)
             }
             return res.status(200).json(mailer)
         }
-        if(!reviewer.isAdminVerified){
+        if(!reviewer.isAdminVerified ){
             return res.json({
                 message:'Not verified by admin',
                 error:null

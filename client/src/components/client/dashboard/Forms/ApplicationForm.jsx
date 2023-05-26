@@ -62,12 +62,6 @@ const ApplicationForm = (props,ref) => {
         if(iprType==='trademark')data.append('form48', form48)  
         return createApplication(data)
     }
-    // useEffect(()=>{
-    //     if(isCleared) return;
-    //     setDesc('');setTitle('');setDocUrl('');setForm1(null);
-    //     setForm3(null);setForm5(null);setForm48(null);setIdProof(null);
-    //     setDocFile(null);setDocType('url');setIprType('patent')
-    // }, [isCleared])
     return (
         <div className='application-form'>
             <div className='form-body'>
