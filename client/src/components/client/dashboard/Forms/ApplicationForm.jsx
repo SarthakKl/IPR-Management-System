@@ -46,7 +46,7 @@ const ApplicationForm = (props,ref) => {
         if(!docUrl && !docFile) return notify("Please attach drawings of your work!")
         if(!idProof)return notify("Please attach your id proof!")
         if(!form1 && iprType==='patent') return notify("Please attach form 1!")
-        if(!form3 && iprType==='patent') return notify("Please attach form 2!")
+        if(!form3 && iprType==='patent') return notify("Please attach form 3!")
         if(!form5 && iprType==='patent') return notify("Please attach form 5!")
         if(!form48 && iprType==='trademark') return notify("Please attach form 48!")
         const data = new FormData()
