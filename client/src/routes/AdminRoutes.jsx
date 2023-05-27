@@ -10,6 +10,7 @@ import { actions } from '../redux/authSlice'
 import SearchDatabase from '../components/admin/Dashboard/SearchDatabase'
 import axios from 'axios'
 import ReviewSignup from '../components/admin/Dashboard/ReviewSignup'
+import Queries from '../components/admin/Dashboard/Queries'
 
 function AdminRoutes() {
   const dispatch = useDispatch()
@@ -36,6 +37,7 @@ function AdminRoutes() {
           <Route path = '' element={<SearchDatabase/>}/>
           <Route path = 'database' element={<SearchDatabase/>}/>
           <Route path = 'review-signup' element={<ReviewSignup/>}/>
+          <Route path = 'queries' element = {<Queries/>}/>
         </Route>
         <Route path = '/profile' element = {<Profile/>}/>
         <Route path = '/*' element = {<NotFound/>}/>

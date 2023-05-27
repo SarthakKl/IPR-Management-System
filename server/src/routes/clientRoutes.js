@@ -69,6 +69,8 @@ router.post('/apply', upload.fields(uploadFields), async (req, res) => {
         const content = req.body.docType == 'url'?req.body.content:req.files.content[0].location
         const description = req.body.desc
         const iprType = req.body.iprType
+        let application_fee = 100000
+        
         // const contentType = req.body.contentType
         console.log(clientName)
         let forms = []
@@ -76,10 +78,12 @@ router.post('/apply', upload.fields(uploadFields), async (req, res) => {
             const form1 = req.files.form1[0].location
             const form3 = req.files.form3[0].location
             const form5 = req.files.form5[0].location
+            application_fee = 200000
             forms = [form1, form3, form5];
         }
         if(iprType == 'trademark'){
             const form48 = req.files.form48[0].location
+            application_fee = 150000       
             forms = [form48]
         }
         const applicationData = {
@@ -90,7 +94,8 @@ router.post('/apply', upload.fields(uploadFields), async (req, res) => {
             content: content, 
             description: description,
             ipr_type: iprType, 
-            forms: forms
+            forms: forms,
+            application_fee
         }
         
         const application = new Application(applicationData)
@@ -116,10 +121,6 @@ router.get('/application-details', async (req, res) => {
                                                  .select(selectedAttr)
                                                  .sort({createdAt:-1})
         console.log(allApplications)
-        // allApplications.sort((a, b) => a.timestamp - b.timestamp)
-        // const pending = await Application.find({client_id:req.clientId,status:'PENDING'}).select(selectedAttr)
-        // const approved = await Application.find({client_id:req.clientId,status:'APPROVED'}).select(selectedAttr)
-        // const rejected = await Application.find({client_id:req.clientId,status:'REJECTED'}).select(selectedAttr)
         const pending = allApplications.filter((application) => application.status == 'PENDING' && application.payment_status == 'PAID')
         const approved = allApplications.filter((application) => application.status == 'APPROVED')
         const rejected = allApplications.filter((application) => application.status == 'REJECTED')

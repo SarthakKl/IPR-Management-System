@@ -185,7 +185,7 @@ const ApplicationForm = (props,ref) => {
                         <div>
                             <span>Form 1</span>
                             <a
-                                href='https://www.javatpoint.com/infrastructure-as-a-service'
+                                href='https://ipindia.gov.in/writereaddata/Portal/IPOFormUpload/1_12_1/form-1.pdf'
                                 target='_blank'
                                 rel='noreferrer'
                                 className='form-download'
@@ -204,7 +204,7 @@ const ApplicationForm = (props,ref) => {
                         <div>
                             Form 3
                             <a
-                                href='https://www.javatpoint.com/infrastructure-as-a-service'
+                                href='https://ipindia.gov.in/writereaddata/Portal/IPOFormUpload/1_14_1/form-3.pdf'
                                 target='_blank'
                                 rel='noreferrer'
                                 className='form-download'
@@ -223,7 +223,7 @@ const ApplicationForm = (props,ref) => {
                         <div>
                             Form 5
                             <a
-                                href='https://www.javatpoint.com/infrastructure-as-a-service'
+                                href='https://ipindia.gov.in/writereaddata/Portal/ev/forms/Form_5.pdf'
                                 target='_blank'
                                 rel='noreferrer'
                                 className='form-download'
@@ -247,7 +247,7 @@ const ApplicationForm = (props,ref) => {
                         <div>
                             <span>Form 48</span>
                             <a
-                                href='https://www.javatpoint.com/infrastructure-as-a-service'
+                                href='https://ipindia.gov.in/writereaddata/images/pdf/form-TM-48.pdf'
                                 target='_blank'
                                 rel='noreferrer'
                                 className='form-download'
