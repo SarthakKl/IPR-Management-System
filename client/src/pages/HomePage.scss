@@ -1,71 +1,149 @@
-.header{
-    display: flex;
-    justify-content:space-between;
-    padding:10px;
-    position:sticky;
-    background-color: aliceblue;
-    z-index: 100;
-    top:0px;
-    .logo{
-        display: flex;
-        justify-content: center
-    }
-    .right-div{
-        display: flex;
-    }
-    .dropdown-menu{ 
-        width:100px;
-        background-color: white;
-        box-shadow: 1px 1px 1px rgb(228, 228, 228);
-        padding: 0px;
-        .dropdown-item{
-            padding: .7rem 1rem;
-        }
-    }
-}
-
-
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+.first-div{
+    background-color: #004f70 ;
+    .navbar{
+        display: flex;
+        padding: 10px;
+        .logo {
+            padding-left: 15px;
+            padding-top: 10x;
+            h4{
+                margin: auto;
+                font-family: 'Montserrat';
+                color: white;
 
-/* Homepage */
-.div-2{
-    
-}
-
-.seconddiv{
-
-    // background-color: red;
-    display: flex;
-    >div {
-        flex: 1;
-        border-radius: 10px;
-    }
-    .div-2{
-        padding: 20px;
-        margin-top: 35px;
-        text-align: justify;
-    }
-    .second-image{
-        position: relative;
-        img{
-            width: 100%;
-            display: block;
-            border-radius: 7px;
+                span{
+                    font-weight: bold;
+                }
+            }
+        }
+        .right-section{
+            width:40%;
+            display: flex;
+            justify-content:space-between;
+            .options{
+                padding:7px;
+                color: #D3D3D3;
+                cursor: pointer;
+                transition:color 0.3s ease, transform 0.3s ease;
+            }
+            .options:hover{
+                color: white;
+                transform:scale(1.1)
+            }
+            .dropdown-toggle {
+                outline: 0;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                background-color: transparent;
+                border: 4px;
+                transition: background-color 0.3s ease;
+              }
+              
+            .dropdown-toggle:hover {
+                background-color: rgb(20, 23, 26);
+            }
         }
     }
 }
-.landing-div{
-    width: 90%;
-    margin: auto;
+.second-div{
+    padding:15px 10px 35px 10px;
+    margin-bottom:30px;
+    .services-heading{
+        text-align: center;
+        padding:30px;
+        font-weight: bold;
+        font-size:30px;
+    }
+    .cards{
+        display: flex;
+        justify-content:space-around;
+        margin:20px;
+    }
+}
+.homepage-card{
+    // background-color: white;
+    // border: 1px solid #ccc;
+    border:none;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 350px;
+    height: 260px;
+    perspective: 1000px;
+    .heading{
+        font-size:20px;
+        font-weight:bold;
+        margin-top:8px;
+    }
+    .card-content{
+        overflow-wrap: break-word;
+        margin-top: 10px;
+    }
+    .content-logo{
+        width:40px;
+        height:40px;
+    }
+    .read-more-btn{
+        position:absolute;
+        bottom:0px;
+        right:0px;
+        margin:10px 20px 10px ;
+        // border-radius:80%;
+        border:none;
+        font-weight: bold;
+        // padding:8px;
+        background-color: #004f70;
+        font-weight: 700;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        transition:background-color 0.2s ease;
+    }
+    .read-more-btn:hover{
+        background-color:#006a97
+    }
+    transition: box-shadow 0.2s ease, transform 0.2s ease
+}  
+.homepage-card:hover{
+    box-shadow: 4px 6px 7px 4px rgba(0, 0, 0, 0.1);
+    transform:scale(1.05)
+}
+.footer{
+    display: flex;
+    justify-content: space-around;
+    background-color: black;
+    color:white;
+    padding:20px;
+    .newsletter-input{
+        color:black;
+    }
+    .links{
+        color:#D3D3D3;
+        font-size:12px;
+        margin-top:10px;
+        transition:color;
+        cursor:pointer;
+    }
+    .links:hover{
+        color:white
+    }
+    .address div{
+        color:#D3D3D3;
+        font-size:12px;
+        margin-top:10px;
+    }
+}
+.first-div-content{
+    padding-left: 40px;
+    padding-right:40px;
     font-weight: 700;
-    position: relative;
     display: flex;
     justify-content: space-between;
     height: 100vh;
 }
-.landing-div .div-1{
+.first-div-content .div-1{
     max-width: 600px;
     text-align: justify;
     margin-top: 80px;
@@ -76,19 +154,23 @@
         font-size: 15px;
     }
 }
-.landing-div button {
+.first-div-content button {
     padding: 10px 30px;
     cursor: pointer;
+    box-shadow:0px 0px;
     margin-top: 15px;
+    color:white ;
+    border:none;
+    // background-color:rgb(239,239,239);
 }
-.landing-div img{
+.first-div-content img{
     height: 70vh;
     flex: 1;
     margin-top: 70px;
 }
 .main-text{
     font-size: 60px;
-    /* margin-top: 50px; */
+    margin-top: 50px; 
     -webkit-text-fill-color: transparent;
     background-repeat: repeat;
     -webkit-background-clip: text;
@@ -98,13 +180,15 @@
     background-repeat: repeat;
     background-image: url('https://www.clementoni.com/media/prod/dk/39521/gradient-1000-pcs-high-quality-collection_uEw0tL3.jpg');
     background-size: cover;
-    /* margin: 0px; */
+    margin: 0px; 
+    // color:#87CEEB;
     animation: movebackground 20s infinite;
 }
 .main-text-helper{
     font-weight: normal;
     letter-spacing: 1px;
     font-size: 16px;
+    color:#D3D3D3
 }
 @keyframes movebackground{
     0%{
@@ -122,9 +206,4 @@
     100%{
         background-position: 700px;
     }
-}
-
-.footer{
-
-
 }

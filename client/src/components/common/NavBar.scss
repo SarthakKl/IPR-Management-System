@@ -1,7 +1,7 @@
 .header{
     display: flex ;
     justify-content: space-between ;
-    background-color: aliceblue;
+    // background-color: transparent;
     align-items: center;
     .profile{
         display: flex;
@@ -21,6 +21,15 @@
         }
         .username{
             margin-right:8px
+        }
+    }
+    .dropdown-menu{ 
+        width:100px;
+        background-color: white;
+        box-shadow: 1px 1px 1px rgb(228, 228, 228);
+        padding: 0px;
+        .dropdown-item{
+            padding: .7rem 1rem;
         }
     }
     
