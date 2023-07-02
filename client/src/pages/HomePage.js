@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import './HomePage.scss'
-import Button from 'react-bootstrap/button'
+import Button from 'react-bootstrap/Button'
 import AuthModal from './../components/ui/modals/AuthModal'
 import Dropdown from 'react-bootstrap/Dropdown';
 import logo from '../assets/logo1.png'
