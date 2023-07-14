@@ -27,7 +27,6 @@ function Homepage() {
                 <div className="first-div">
                     <div className='navbar'>
                         <div className='logo'>
-                            {/* <img src={logo} width='50' height='40' alt='company_logo' /> */}
                             <h4><span>Invent</span>Assure</h4>
                         </div>
                         <div className='right-section'>
@@ -106,7 +105,8 @@ function Homepage() {
                     </div>
                     <div>
                         <h5>Newsletter Subscription</h5>
-                        <input placeholder='Email' className='newsletter-input' />
+                        <input placeholder='Email Address' className='newsletter-input' />
+                        <Button className='subscribe-btn'>Subscribe</Button>
                     </div>
                 </div>
             </div>

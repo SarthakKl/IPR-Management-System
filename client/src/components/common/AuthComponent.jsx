@@ -11,7 +11,7 @@ function AuthComponent({handleLogin, handleSignup, errorEncountered, setError, u
     const [onLoginPage, setPageState] = useState(true)
 
     const notify = (msg) => toast.error(msg, {
-        position: "top-right",
+        position: "top-right",  
         autoClose: 4000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -52,6 +52,9 @@ function AuthComponent({handleLogin, handleSignup, errorEncountered, setError, u
                 onLoginPage  &&
                 <div className='login_component'>
                     <div className="left_div">
+                        <div className='logo'>
+                            <h4><span>Invent</span>Assure</h4>
+                        </div>
                         <div className="text_message">
                             <h2>Welcome Back,</h2>
                             <p>We are here to help you in your own business</p>
@@ -59,15 +62,15 @@ function AuthComponent({handleLogin, handleSignup, errorEncountered, setError, u
                         <img src="https://cdn.dribbble.com/users/902228/screenshots/14327668/media/57d86248b897feea562f8e2fe46bf7b2.jpg?compress=1&resize=1000x750&vertical=top" alt="" />
                     </div>
                     <div className='right_div'>
-                        
                         <form
                             className=''
                             onSubmit={handleLogin}
                         >   
-                            <img src={logo} className='logo' alt="" />
+                            {/* <h4 className='logo'><span>Invent</span>Assure</h4>   */}
+                            {/* <img src={logo} className='logo' alt="" /> */}
                             <div className='main'>
                                 <div className="welcome_text">
-                                    <h2>Login</h2>
+                                    <h3>{userType} Login</h3>
                                     <p>
                                         Secure Your Intellectual Property
                                     </p>    

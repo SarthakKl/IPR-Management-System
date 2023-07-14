@@ -11,6 +11,9 @@ function ReviewerSignup({handleSignup, errorEncountered, setPageState, setError}
     <div className='auth_page'>
         <div className='login_component'>
             <div className="left_div">
+                <div className='logo'>
+                    <h4><span>Invent</span>Assure</h4>
+                </div>
                 <div className="text_message">
                     <h2>Welcome Back,</h2>
                     <p>We are here to help you in your own business</p>
@@ -21,10 +24,10 @@ function ReviewerSignup({handleSignup, errorEncountered, setPageState, setError}
                 <form
                     onSubmit={handleSignup}
                 >
-                    <img src={logo} className='logo' alt="" />
+                    {/* <img src={logo} className='logo' alt="" /> */}
                     <div className="main">
                         <div className="welcome_text">
-                            <h2>Signup</h2>
+                            <h3>Reviewer Signup</h3>
                             <p>
                             Secure Your Intellectual Property
                             </p>    
@@ -73,11 +76,6 @@ function ReviewerSignup({handleSignup, errorEncountered, setPageState, setError}
                                 >
                                     Log in
                                 </span>
-                            </div>
-                            <div
-                                className = {errorEncountered==''?'error-div-hidden':'error-div-visible'}
-                            >
-                                {errorEncountered}
                             </div>
                         </div>
                     </div>

@@ -6,19 +6,7 @@
     .navbar{
         display: flex;
         padding: 10px;
-        .logo {
-            padding-left: 15px;
-            padding-top: 10x;
-            h4{
-                margin: auto;
-                font-family: 'Montserrat';
-                color: white;
-
-                span{
-                    font-weight: bold;
-                }
-            }
-        }
+        
         .right-section{
             width:40%;
             display: flex;
@@ -118,6 +106,21 @@
     padding:20px;
     .newsletter-input{
         color:black;
+        padding:8px;
+        border-radius:5px;
+        width:100%;
+    }
+    .subscribe-btn{
+        background-color: #D3D3D3;
+        color:black;
+        padding:3px 6px 3px 6px;
+        font-size:12px;
+        border:none;
+        margin-top:8px;
+    }
+    .subscribe-btn:hover{
+        background-color: white;
+        color:black
     }
     .links{
         color:#D3D3D3;

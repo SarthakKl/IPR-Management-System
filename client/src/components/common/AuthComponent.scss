@@ -1,96 +1,89 @@
 
-.auth-component{
-    // position:absolute;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color:white;
-    position: relative;
-    background: linear-gradient(145deg, #fafafa, #fffaf3);
-    overflow-y: auto;
+// .auth-component{
+//     // position:absolute;
+//     height: 100vh;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     background-color:white;
+//     position: relative;
+//     background: linear-gradient(145deg, #fafafa, #fffaf3);
+//     overflow-y: auto;
 
-    .outer-div{
-        width:28%;
-        padding:20px;
-        border-radius: 5px;
-        max-width: 500px;
-        min-width: 300px;
-        // border: 1px solid rgba(223, 223, 223, 0.616);
-        // background: #EEF0F4;
-        border-radius: 5%;
-        background: linear-gradient(145deg, #ffffffd7, #ffffff);
-        box-shadow: 6.91px 6.91px 15px #ebd8d8, -6.91px -6.91px 15px #ebd8d8;
-        border: 1px solid #ffffff;
+//     .outer-div{
+//         width:28%;
+//         padding:20px;
+//         border-radius: 5px;
+//         max-width: 500px;
+//         min-width: 300px;
+//         // border: 1px solid rgba(223, 223, 223, 0.616);
+//         // background: #EEF0F4;
+//         border-radius: 5%;
+//         background: linear-gradient(145deg, #ffffffd7, #ffffff);
+//         box-shadow: 6.91px 6.91px 15px #ebd8d8, -6.91px -6.91px 15px #ebd8d8;
+//         border: 1px solid #ffffff;
 
-        .user-categories{
-            display: flex;
-            justify-content:space-between;
-            width: 100%;
-            margin-top:10px;
-            div{
-                display: flex;
-            }
-            input{
-                margin-top: 0px;
-                margin-right:2px;
-            }
-        }
-    // border-radius: 100%;
-    }
-    .auth-msg{
-        display: flex;
-        justify-content: center;
-        margin-top: 8px;
-    }
-}
-.auth-form{
-    display: flex;
-    flex-direction:column;
-    border-radius: 5px;
-    align-items: center;
-    input,textarea{ 
-        border:2px;
-        border-color: rgb(177, 177, 177);
-        border-radius:5px;
-        width: 100%;
-        min-width: none !important;
-        padding: .5rem 1rem;
-        margin-top: .8rem;
-        // outline: 1px solid rgb(230, 230, 230)
-        outline: none;
-        background: linear-gradient(145deg, #fdfdfd, #ffffff);
-        box-shadow: 6.91px 6.91px 15px #ffffff, -6.91px -6.91px 15px #ffffff;
-        border: 1px solid #777777;
-        color: black;
-    }
-    button{
-        border-radius:5px;
-        background-color: rgb(8, 135, 255);
-        margin-top:5px;
-        padding: .5rem 6rem;
-        width: 100%;
-        // border: 1px solid rgb(230, 230, 230);
-        margin-top: .8rem;
-        color: #fff;
-        box-shadow: 9.91px 9.91px 15px #5ECDD4, -9.91px -9.91px 15px #70F5FE;
-        // background: linear-gradient(145deg, #79FFFF, #55BAC0);
-        background: linear-gradient(145deg, #1337d7, #1337d7);
-        box-shadow: 2px 2px 2px #0022b8;
-        border: none;
-        color: rgb(255, 255, 255);
-    }
-    button:hover{
-        background-color: rgb(0, 79, 124);
-    }
-}
-.auth-title{
-    text-align: center;
-    font-weight: 700;
-    letter-spacing: 1px;
-    font-size: 28px;
-    color: rgb(25, 52, 54);
-}
+//         .user-categories{
+//             display: flex;
+//             justify-content:space-between;
+//             width: 100%;
+//             margin-top:10px;
+//             div{
+//                 display: flex;
+//             }
+//             input{
+//                 margin-top: 0px;
+//                 margin-right:2px;
+//             }
+//         }
+//     // border-radius: 100%;
+//     }
+//     .auth-msg{
+//         display: flex;
+//         justify-content: center;
+//         margin-top: 8px;
+//     }
+// }
+// .auth-form{
+//     display: flex;
+//     flex-direction:column;
+//     border-radius: 5px;
+//     align-items: center;
+//     input,textarea{ 
+//         border:2px;
+//         border-color: rgb(177, 177, 177);
+//         border-radius:5px;
+//         width: 100%;
+//         min-width: none !important;
+//         padding: .5rem 1rem;
+//         margin-top: .8rem;
+//         // outline: 1px solid rgb(230, 230, 230)
+//         outline: none;
+//         background: linear-gradient(145deg, #fdfdfd, #ffffff);
+//         box-shadow: 6.91px 6.91px 15px #ffffff, -6.91px -6.91px 15px #ffffff;
+//         border: 1px solid #777777;
+//         color: black;
+//     }
+//     button{
+//         border-radius:5px;
+//         background-color: rgb(8, 135, 255);
+//         margin-top:5px;
+//         padding: .5rem 6rem;
+//         width: 100%;
+//         // border: 1px solid rgb(230, 230, 230);
+//         margin-top: .8rem;
+//         color: #fff;
+//         box-shadow: 9.91px 9.91px 15px #5ECDD4, -9.91px -9.91px 15px #70F5FE;
+//         // background: linear-gradient(145deg, #79FFFF, #55BAC0);
+//         background: linear-gradient(145deg, #1337d7, #1337d7);
+//         box-shadow: 2px 2px 2px #0022b8;
+//         border: none;
+//         color: rgb(255, 255, 255);
+//     }
+//     button:hover{
+//         background-color: rgb(0, 79, 124);
+//     }
+// }
 .nav-auth-btn{
     text-decoration: underline;
     color: blue;
@@ -100,34 +93,43 @@
 .nav-auth-btn:hover{
     color:rgb(0, 0, 212)
 }
-.error-div-visible{
-    color:red;
-    padding:5px;
-    text-align: center;
-    visibility: visible;
-}
-.error-div-hidden{
-    visibility: hidden;
-}
+// .error-div-visible{
+//     color:red;
+//     padding:5px;
+//     text-align: center;
+//     visibility: visible;
+// }
+// .error-div-hidden{
+//     visibility: hidden;
+// }
 
 .auth_page{
     background: blue;
     height: 100vh;
     .login_component{
-        height: 100%;
-        display: flex;
+        height: 100vh;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
         .left_div{
             background: #fedfdcf8;
-            flex: 1;
+            // flex: 1;
             display: grid;
-            align-items: center;
             box-sizing: border-box;
             position: relative;
-            height:100vh;
+            .logo{
+                // color:black;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                height: 40px;
+                h4{
+                    color:black !important;
+                }
+            }
             img{
                 margin: auto;
                 display: block;
-                width: 80%;
+                width: 80%;  
                 border-radius: 10px;
             }
             .text_message{
@@ -151,12 +153,8 @@
                 background: rgba(239, 243, 239, 0.815);
                 border-radius: 50%;
             }
-            .welcome_message{
-            
-                
-            }
             form{
-                margin-top: 100px;
+                margin-top: 90px;  
                 .user-categories{
                     // background-color: red;
                     display: flex;
@@ -167,9 +165,13 @@
                         input{
                             margin-top: 0px;
                         }
+                        .user-cat-label{
+                            margin-left:3px;
+                        }
                     }
                 }
                 .welcome_text{
+                    text-transform:capitalize;
                     text-align: center;
                     p{
                         font-weight: 400;
@@ -231,8 +233,6 @@
                     border-radius: 50%;
                     background: linear-gradient(145deg, #cacaca, #f0f0f0);
                     box-shadow:  20px 20px 57px #949494,-20px -20px 57px #ffffff;
-
-
                 }
                 img{
                     box-sizing: border-box;
@@ -242,9 +242,6 @@
                     padding: 7px;
                     cursor: pointer;
                     border-radius: 50%;
-
-                    // border-radius: 50px;
-                    
                 }
             }
         }

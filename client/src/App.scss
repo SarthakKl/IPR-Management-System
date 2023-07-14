@@ -19,7 +19,19 @@
         overflow: auto;
     }
 }
+.logo {
+    padding-left: 15px;
+    padding-top: 10x;
+    h4{
+        margin: auto 0;
+        font-family: 'Montserrat';
+        color: white;
 
+        span{
+            font-weight: bold;
+        }
+    }
+}
 /*=====================Scrollbar====================*/
 ::-webkit-scrollbar {
     width: 0px;
