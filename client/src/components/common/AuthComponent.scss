@@ -145,6 +145,9 @@
             flex: 1;
             background: rgb(255, 255, 255);
             height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             .logo{
                 width: 100px;
                 height: 100px;
@@ -154,7 +157,7 @@
                 border-radius: 50%;
             }
             form{
-                margin-top: 90px;  
+                // margin-top: 90px;  
                 .user-categories{
                     // background-color: red;
                     display: flex;
