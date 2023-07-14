@@ -2,11 +2,8 @@ import React from 'react'
 import '../common/AuthComponent.scss'
 import logo from '../../assets/logo.png'
 
-function ReviewerSignup({handleSignup, errorEncountered, setPageState, setError}) {
-    const handleNav = () => {
-        setError('')
-        setPageState(true)
-    }
+function ReviewerSignup({handleSignup, setPageState}) {
+
   return (
     <div className='auth_page'>
         <div className='login_component'>
@@ -72,7 +69,7 @@ function ReviewerSignup({handleSignup, errorEncountered, setPageState, setError}
                                 <span className='select-none'>Already a member?</span>
                                 <span 
                                     className='nav-auth-btn' 
-                                    onClick={handleNav}
+                                    onClick={() => setPageState(true)}
                                 >
                                     Log in
                                 </span>

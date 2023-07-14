@@ -3,10 +3,12 @@ import AuthComponent from '../../components/common/AuthComponent'
 import { clientLogin, clientSignup } from '../../utils/api/clientApi'
 import {actions} from '../../redux/authSlice'
 import { useDispatch } from 'react-redux'
+import CustomSpinner from '../../components/common/CustomSpinner'
 
 function Auth() {
   const [errorEncountered, setError] = useState('')
   // const [verificationState, setVerificationState] = useState('')
+  const [loading,setLoadingState] = useState(false)
   const [successMessage, setSuccessMessage] = useState('')
   const dispatch = useDispatch()
 
@@ -16,7 +18,9 @@ function Auth() {
     const pass = e.target[1].value
   
     // console.log(email, pass)
+    setLoadingState(true)
     const response = await clientLogin(email, pass)
+    setLoadingState(false)
     console.log(response)
     if(response.error){
       console.log(response.error)
@@ -49,7 +53,9 @@ function Auth() {
     if(pass !== confirmPass){
       return setError("Password doesn't match")
     }
+    setLoadingState(true)
     const response = await clientSignup({userCategory, fullname, email, contact, pass, description})
+    setLoadingState(false)
     console.log(response)
 
     if(response.error){
@@ -60,15 +66,18 @@ function Auth() {
       return setSuccessMessage('Email sent successfully. You can close this window')
   }
   return (
-    <AuthComponent 
-      handleLogin = {handleLogin} 
-      handleSignup = {handleSignup}
-      errorEncountered = {errorEncountered} 
-      setError = {setError}
-      userType = 'client'
-      successMessage={successMessage}
-      setSuccessMessage={setSuccessMessage}
-    />
+    <div>
+      <CustomSpinner loading = {loading}/>
+      <AuthComponent 
+        handleLogin = {handleLogin} 
+        handleSignup = {handleSignup}
+        errorEncountered = {errorEncountered} 
+        setError = {setError}
+        userType = 'client'
+        successMessage={successMessage}
+        setSuccessMessage={setSuccessMessage}
+      />
+    </div>
   )
 }
 

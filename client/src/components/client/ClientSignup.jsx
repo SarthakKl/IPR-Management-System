@@ -2,13 +2,9 @@ import React, { useState } from 'react'
 import '../common/AuthComponent.scss'
 import logo from '../../assets/logo.png'
 
-function ClientSignup({handleSignup, errorEncountered, setPageState, setError}) {
+function ClientSignup({handleSignup, setPageState}) {
     const [userCategory, setUserCategory] = useState('Individual')
 
-    const handleNav = () => {
-        setError('')
-        setPageState(true)
-    }
     return (
             <div className='auth_page'>
                 <div className='login_component'>
@@ -116,7 +112,7 @@ function ClientSignup({handleSignup, errorEncountered, setPageState, setError}) 
                                         <span className='select-none'>Already a member?</span>
                                         <span 
                                             className='nav-auth-btn' 
-                                            onClick={handleNav}
+                                            onClick={()=> setPageState(true)}
                                         >
                                             Log in
                                         </span>
