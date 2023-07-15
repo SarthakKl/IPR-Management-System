@@ -8,6 +8,7 @@ import { getApplicationDetails } from '../../utils/api/clientApi'
 import { useDispatch, useSelector } from 'react-redux'
 import {actions} from '../../redux/clientSlice'
 import ApplyModal from '../../components/client/dashboard/Forms/ApplyModal'
+import CustomSpinner from '../../components/common/CustomSpinner'
 
 function Dashboard() {
   const cardTitle = ['Applied', 'Approved', 'Pending', 'Rejected']
@@ -18,14 +19,18 @@ function Dashboard() {
     state.clientReducer.rejected.length
   ])
   const catRoutes = ['applied', 'approved', 'pending', 'rejected']
-  const [iprType, setIprType ] = useState('patent')
+  // const [iprType, setIprType ] = useState('patent')
   const [applyModal, showApplyModal] = useState(false)
+  const [currentCard, setCurrentCard] = useState('Applied');
+  const [loading, setLoadingState] = useState(false)
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
   const fetchApplications = async ()=>{
     try {
+      setLoadingState(true)
       const response = await getApplicationDetails()
+      setLoadingState(false)
       if(response.error){
         return console.log(response.error)
       }
@@ -40,28 +45,43 @@ function Dashboard() {
   }, [])
   return (
     <div className='client-dashboard'>
-      <div className='cat-cards'>
-        {
-          cardTitle.map((title, index) => {
-            return <Card
-              title={title}
-              count={categoryCount[index]}
-              clicked={() => navigate(catRoutes[index], { replace: true })}
-              key={index}
+      <CustomSpinner classname = {loading?'spinner-div white-wrapper':'spinner-div-hidden'}/>
+      {
+        !loading &&
+        <div>
+          <div className='cat-cards'>
+            {
+              cardTitle.map((title, index) => {
+                return <Card
+                  title={title}
+                  count={categoryCount[index]}
+                  classname = {currentCard === title ? 'info-card info-card-selected':'info-card'}
+                  clicked={() => {
+                    setCurrentCard(title)
+                    navigate(catRoutes[index], { replace: true })
+                  }}
+                  key={index}
+                />
+              })
+            }
+            <div 
+              className='apply-card' 
+              onClick={() => {
+                showApplyModal(true)
+              }}
+            >
+              <img src={plus} height='50' width='50' />
+            </div>
+            <ApplyModal
+              showApplyModal={showApplyModal}
+              applyModal={applyModal}
+              fetchApplications={fetchApplications}
             />
-          })
-        }
-        <div className='apply-card' onClick={() => showApplyModal(true)}>
-          <img src={plus} height='50' width='50' />
+          </div>
+          <Outlet />
         </div>
-        <ApplyModal
-          showApplyModal={showApplyModal}
-          applyModal={applyModal}
-          fetchApplications={fetchApplications}
-        />
+      } 
       </div>
-      <Outlet />
-    </div>
   )
 }
 

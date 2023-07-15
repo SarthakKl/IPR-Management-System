@@ -2,14 +2,14 @@ import react from 'react'
 import './CustomSpinner.scss'
 import Spinner from 'react-bootstrap/esm/Spinner'
 
-const CustomSpinner = ({loading}) => {
+const CustomSpinner = ({classname, text="Loading...", }) => {
     return (
-    <div className={loading?'spinner-div':'spinner-div-hidden'}>
+    <div className= {classname}>
         <div>
           <Spinner animation="border" variant="dark" className='spinner'/>
-          <div>Getting everything ready...</div>
+          <div>{text}</div>
         </div>
-      </div>
+    </div>
     )
 }
 

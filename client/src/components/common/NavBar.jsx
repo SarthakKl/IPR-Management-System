@@ -14,8 +14,9 @@ function NavBar() {
   console.log(userName)
   return (
     <div className='header'>
-        <div>
-          <img src = {logo} width = '80' height='50' alt = 'ipr logo'/>
+          {/* <img src = {logo} width = '80' height='50' alt = 'ipr logo'/> */}
+        <div className='logo'>
+          <h4><span>Invent</span>Assure</h4>
         </div>
         <div className = 'right-header'>  
             <div className='profile'>

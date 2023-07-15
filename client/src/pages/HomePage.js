@@ -117,9 +117,6 @@ function Homepage() {
                     modalTitle={modalTitle}
                 />
             </div>
-            <div className='footer'>
-
-            </div>
         </div>
     )
 }

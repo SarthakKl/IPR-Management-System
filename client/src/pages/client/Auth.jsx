@@ -67,7 +67,7 @@ function Auth() {
   }
   return (
     <div>
-      <CustomSpinner loading = {loading}/>
+      <CustomSpinner classname = {loading?'spinner-div':'spinner-div-hidden'}/>
       <AuthComponent 
         handleLogin = {handleLogin} 
         handleSignup = {handleSignup}

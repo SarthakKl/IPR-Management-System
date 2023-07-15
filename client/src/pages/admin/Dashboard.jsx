@@ -6,11 +6,13 @@ import '../client/Dashboard.scss'
 import Card from '../../components/ui/Cards/Card'
 import {actions} from '../../redux/adminSlice'
 import { fetchAllApplications, fetchReviewerSignups } from '../../utils/api/adminApi'
+import CustomSpinner from '../../components/common/CustomSpinner'
 
 function Dashboard() {
   const cardTitle = ['Database', 'Review Signup', 'Queries']
   const catRoutes = ['database', 'review-signup', 'queries']
-
+  const [currentCard, setCurrentCard] = useState('Database');
+  const [loading, setLoadingState] = useState(false)
   const categoryCount = useSelector((state) => {
     console.log("fuck",state.adminReducer)
     return [
@@ -22,7 +24,9 @@ function Dashboard() {
   const dispatch = useDispatch()
   const fetchApplication = async () => {
     try {
+      setLoadingState(true)
       const response = await fetchAllApplications()
+      setLoadingState(false)
       if(response.error)
         return console.log(response.error)
       console.log(response.allApplications)
@@ -47,19 +51,29 @@ function Dashboard() {
 
   return (
     <div className='client-dashboard'>
-      <div className='cat-cards'>
-        {
-          cardTitle.map((title, index) => {
-            return <Card
-              title={title}
-              count={categoryCount[index]}
-              clicked={() => navigate(catRoutes[index], { replace: true })}
-              key={index}
-            />
-          })
-        }
-      </div>
-      <Outlet />
+      <CustomSpinner classname = {loading?'spinner-div white-wrapper':'spinner-div-hidden'}/>
+      {
+        !loading &&
+        <div>
+          <div className='cat-cards'>
+            {
+              cardTitle.map((title, index) => {
+                return <Card
+                  title={title}
+                  count={categoryCount[index]}
+                  classname = {currentCard === title ? 'info-card info-card-selected':'info-card'}
+                  clicked={() => {
+                    setCurrentCard(title)
+                    navigate(catRoutes[index], { replace: true })
+                  }}
+                  key={index}
+                />
+              })
+            }
+          </div>
+          <Outlet />
+        </div>
+      }
     </div>
   )
 }

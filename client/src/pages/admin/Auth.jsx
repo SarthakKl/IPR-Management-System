@@ -3,9 +3,11 @@ import { useDispatch } from 'react-redux'
 import AuthComponent from '../../components/common/AuthComponent'
 import {actions, deauthenticateUser} from '../../redux/authSlice'
 import { adminLogin, adminSignup } from '../../utils/api/adminApi'
+import CustomSpinner from '../../components/common/CustomSpinner'
 
 function Auth() {
   const [errorEncountered, setError] = useState('')
+  const [loading, setLoadingState] = useState(false)
   // const [verificationState, setVerificationState] = useState('')
   const [successMessage, setSuccessMessage] = useState('')
   const dispatch = useDispatch()
@@ -16,7 +18,9 @@ function Auth() {
     const pass = e.target[1].value
   
     // console.log(email, pass)
+    setLoadingState(true)
     const response = await adminLogin(email, pass)
+    setLoadingState(false)
     
     if(response.error){
       console.log(response.error)
@@ -56,15 +60,19 @@ function Auth() {
     if(response.message === 'Email sent successfully')
       return setSuccessMessage(false)
   }
-  return (<AuthComponent
-    handleLogin={handleLogin}
-    handleSignup={handleSignup}
-    errorEncountered={errorEncountered}
-    setError={setError}
-    userType='admin'
-    successMessage = {successMessage}
-    setSuccessMessage={setSuccessMessage}
-  />
+  return (
+    <div>
+      <CustomSpinner classname = {loading?'spinner-div':'spinner-div-hidden'}/>
+      <AuthComponent
+        handleLogin={handleLogin}
+        handleSignup={handleSignup}
+        errorEncountered={errorEncountered}
+        setError={setError}
+        userType='admin'
+        successMessage = {successMessage}
+        setSuccessMessage={setSuccessMessage}
+      />
+    </div>
   )
 }
 

@@ -1,13 +1,19 @@
 .header{
     display: flex ;
     justify-content: space-between ;
+    margin-bottom: 20px;
     // background-color: transparent;
+    // background-color: #004f70;
     align-items: center;
+    .logo{
+        h4{
+            color:black
+        }
+    }
     .profile{
         display: flex;
         align-items: center;
         button{
-
             background: transparent !important;
             outline: none !important;
             border: none !important;
@@ -17,10 +23,10 @@
     .right-header{
         display:flex;
         .notif-icon{
-            margin-right: 10px;
+            // margin-right: 10px;
         }
         .username{
-            margin-right:8px
+            // margin-right:3px
         }
     }
     .dropdown-menu{ 

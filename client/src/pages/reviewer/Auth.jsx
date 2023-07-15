@@ -3,8 +3,10 @@ import { useDispatch } from 'react-redux'
 import AuthComponent from '../../components/common/AuthComponent'
 import { reviewerLogin, reviewerSignup } from '../../utils/api/reviewerApi'
 import {actions} from '../../redux/authSlice'
+import CustomSpinner from '../../components/common/CustomSpinner'
 
 function Auth() {
+  const [loading, setLoadingState] = useState(false)
   const [errorEncountered, setError] = useState('')
   // const [verificationState, setVerificationState] = useState('')
   const dispatch = useDispatch()
@@ -15,9 +17,10 @@ function Auth() {
     const email = e.target[0].value
     const pass = e.target[1].value
   
-    // console.log(email, pass)
+    console.log(email, pass)
+    setLoadingState(true)
     const response = await reviewerLogin(email, pass)
-
+    setLoadingState(false)
     console.log(response)
 
     if(response.error){
@@ -51,7 +54,9 @@ function Auth() {
     if(pass !== confirmPass){
       return setError("Password doesn't match")
     }
+    setLoadingState(true)
     const response = await reviewerSignup(fullname, email, pass, mobile, address)
+    setLoadingState(false)
     console.log(response)
 
     if(response.error){
@@ -63,15 +68,18 @@ function Auth() {
       return setSuccessMessage('Email sent successfully. You can close this window')
     }
   }
-  return (<AuthComponent
-    handleLogin={handleLogin}
-    handleSignup={handleSignup}
-    errorEncountered={errorEncountered}
-    setError={setError}
-    userType='reviewer'
-    successMessage={successMessage}
-    setSuccessMessage={setSuccessMessage}
-  />
+  return (<div>
+      <CustomSpinner classname = {loading?'spinner-div':'spinner-div-hidden'}/>
+      <AuthComponent
+        handleLogin={handleLogin}
+        handleSignup={handleSignup}
+        errorEncountered={errorEncountered}
+        setError={setError}
+        userType='reviewer'
+        successMessage={successMessage}
+        setSuccessMessage={setSuccessMessage}
+      />
+  </div>
   )
 }
 
