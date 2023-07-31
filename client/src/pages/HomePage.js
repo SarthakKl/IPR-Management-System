@@ -37,7 +37,6 @@ function Homepage() {
                                 <Dropdown.Toggle variant="success" id="dropdown-basic">
                                     Login
                                 </Dropdown.Toggle>
-
                                 <Dropdown.Menu>
                                     <Dropdown.Item onClick={()=> {navigate('/client/dashboard')}}>User</Dropdown.Item>
                                     <Dropdown.Item onClick={()=> {navigate('/reviewer/dashboard')}}>Reviewer</Dropdown.Item>

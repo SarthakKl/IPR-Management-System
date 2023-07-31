@@ -17,8 +17,8 @@ router.post('/client-login', async (req, res) => {
         console.log(client)
         if (!client.verified) {
             console.log('Email verification')
-            const mailer = helper(client._id, req.body.email, 'client')
-            console.log('mailer', mailer)
+            const mailer = await helper(client._id, req.body.email, 'client')
+            // console.log('mailer', mailer)
             if (mailer.error) {
                 return res.status(500).json(mailer)
             }

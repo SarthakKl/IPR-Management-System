@@ -31,6 +31,8 @@ module.exports= sendEmail = async (receiverEmail,subject, link) => {
       // console.log("link: "+msg);
       const transport = nodemailer.createTransport({
         service: "gmail",
+        host: "smtp.gmail.com",
+        port:587,
         auth: {
           type: "OAuth2",
           user: 'sarthakk60@gmail.com',
@@ -49,6 +51,10 @@ module.exports= sendEmail = async (receiverEmail,subject, link) => {
         subject: subject,
         text: "Mail for verification.", // plain text body
         html:`<div style="background-color:#F9F9F9; padding:12px"><h2>Hello,Verfiy your account by clicking on the Link.<br>${link}<p style="color:#000000; background-color:#F5EFE6"; text-align:center">Valid only for 10 minutes</p></div>`, // html body
+        auth: {
+          user: 'sarthakk60@gmail.com',
+          accessToken: accessToken
+        }
       };
 
       await transport.sendMail(mailOptions);
@@ -64,7 +70,7 @@ module.exports= sendEmail = async (receiverEmail,subject, link) => {
         console.log(error)
         return {
           status:501,
-          message:error.message
+          error:error?.message
         }
     }
 }
